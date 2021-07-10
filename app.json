@@ -1,0 +1,26 @@
+{
+  "id": "af7543af-789e-4dce-bf62-326cad84d719",
+  "name": "AutoRent",
+  "publisher": "Default publisher",
+  "version": "1.0.0.0",
+  "brief": "",
+  "description": "",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [],
+  "screenshots": [],
+  "platform": "1.0.0.0",
+  "application": "18.0.0.0",
+  "idRanges": [
+    {
+      "from": 50100,
+      "to": 50149
+    }
+  ],
+  "contextSensitiveHelpUrl": "https://AutoRent.com/help/",
+  "showMyCode": true,
+  "runtime": "7.0"
+}
