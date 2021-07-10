@@ -1,19 +1,15 @@
-page 50101 "Auto Mark List"
+page 50103 "Auto Mark Card"
 {
-    Caption = 'Auto Mark List';
-    PageType = List;
-    ApplicationArea = All;
-    UsageCategory = Lists;
+    Caption = 'Auto Mark Card';
+    PageType = Card;
+    UsageCategory = None;
     SourceTable = "Auto Mark";
-    CardPageId = "Auto Mark Card";
-    InsertAllowed = false;
-    ModifyAllowed = false;
 
     layout
     {
         area(Content)
         {
-            repeater(General)
+            group(General)
             {
                 field("No."; Rec."No.")
                 {

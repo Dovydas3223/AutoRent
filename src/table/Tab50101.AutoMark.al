@@ -10,7 +10,7 @@ table 50101 "Auto Mark"
             Caption = 'Car No.';
             DataClassification = CustomerContent;
         }
-        field(10; "Description"; Code[20])
+        field(10; "Description"; Text[100])
         {
             Caption = 'Description';
             DataClassification = CustomerContent;
