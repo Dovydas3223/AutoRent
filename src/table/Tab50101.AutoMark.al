@@ -5,9 +5,9 @@ table 50101 "Auto Mark"
 
     fields
     {
-        field(1; "No."; Code[20])
+        field(1; "Code"; Code[20])
         {
-            Caption = 'Car No.';
+            Caption = 'Code';
             DataClassification = CustomerContent;
         }
         field(10; "Description"; Text[100])
@@ -19,7 +19,7 @@ table 50101 "Auto Mark"
 
     keys
     {
-        key(Key1; "No.")
+        key(Key1; "Code")
         {
             Clustered = true;
         }

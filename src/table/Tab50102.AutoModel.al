@@ -4,17 +4,16 @@ table 50102 "Auto Model"
 
     fields
     {
-        field(1; "Auto Mark No."; Code[20])
+        field(1; "Auto Mark Code"; Code[20])
         {
-            Caption = 'Auto Mark No.';
+            Caption = 'Auto Mark Code';
             DataClassification = CustomerContent;
             TableRelation = "Auto Mark";
         }
-        field(10; "No."; Integer)
+        field(10; "Code"; Code[20])
         {
-            Caption = 'Model No.';
+            Caption = 'Model Code';
             DataClassification = CustomerContent;
-            AutoIncrement = true;
         }
         field(20; "Description"; Text[100])
         {
@@ -25,7 +24,7 @@ table 50102 "Auto Model"
 
     keys
     {
-        key(Key1; "Auto Mark No.", "No.")
+        key(Key1; "Auto Mark Code", "Code")
         {
             Clustered = true;
         }

@@ -11,7 +11,7 @@ page 50103 "Auto Mark Card"
         {
             group(General)
             {
-                field("No."; Rec."No.")
+                field("No."; Rec."Code")
                 {
                     ApplicationArea = All;
                 }

@@ -15,7 +15,7 @@ page 50101 "Auto Mark List"
         {
             repeater(General)
             {
-                field("No."; Rec."No.")
+                field("No."; Rec."Code")
                 {
                     ApplicationArea = All;
                 }
