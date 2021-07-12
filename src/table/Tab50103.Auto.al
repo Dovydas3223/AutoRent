@@ -1,8 +1,6 @@
 table 50103 "Auto"
 {
     Caption = 'Auto';
-    DrillDownPageId = "Resource Card";
-    LookupPageId = "Resource Card";
     DataClassification = CustomerContent;
 
     fields
@@ -56,10 +54,6 @@ table 50103 "Auto"
             Caption = 'Rent Service';
             DataClassification = CustomerContent;
             TableRelation = Resource."No.";
-            trigger OnValidate()
-            begin
-
-            end;
         }
         field(60; "Rent Price"; Decimal)
         {
