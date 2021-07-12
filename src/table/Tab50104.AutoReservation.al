@@ -28,12 +28,25 @@ table 50104 "Auto Reservation"
         {
             Caption = 'Reservation Start';
             DataClassification = CustomerContent;
+
+            trigger OnValidate()
+            begin
+                if Rec."Reservation Start" <> xRec."Reservation Start" then begin
+                    Rec.IsDatetimeOverlaping(Rec."Reservation Start");
+                end;
+            end;
         }
 
         field(21; "Reservation End"; DateTime)
         {
             Caption = 'Reservation End';
             DataClassification = CustomerContent;
+            trigger OnValidate()
+            begin
+                if Rec."Reservation End" <> xRec."Reservation End" then begin
+                    Rec.IsDatetimeOverlaping(Rec."Reservation End");
+                end;
+            end;
         }
     }
 
@@ -44,4 +57,26 @@ table 50104 "Auto Reservation"
             Clustered = true;
         }
     }
+
+    //It works but needs more work
+    procedure IsDatetimeOverlaping(ReservationTime: DateTime)
+    var
+        AutoRes: Record "Auto Reservation";
+        StartDateErrorLbl: Label 'Reservation Time %1 is underlaping with reservation time %2 - %3.';
+        DateErrorLbl: Label 'Reservation Time %1 is overlaping with reservation time %2 - %3.';
+    begin
+        // if AutoRes.IsEmpty() then begin
+        //     exit;
+        // end;
+        AutoRes.SetRange("Auto No.", Rec."Auto No.");
+        AutoRes.FindSet();
+        repeat begin
+            if ((ReservationTime >= AutoRes."Reservation Start") and (ReservationTime <= AutoRes."Reservation End")) then
+                Error(StartDateErrorLbl, ReservationTime, AutoRes."Reservation Start", AutoRes."Reservation End");
+            if (Rec."Reservation Start" <> 0DT) and (Rec."Reservation End" <> 0DT) then begin
+                if (Rec."Reservation Start" < AutoRes."Reservation Start") and (Rec."Reservation End" > AutoRes."Reservation End") then
+                    Error(DateErrorLbl, ReservationTime, AutoRes."Reservation Start", AutoRes."Reservation End");
+            end;
+        end until AutoRes.Next() = 0;
+    end;
 }
