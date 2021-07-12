@@ -9,7 +9,7 @@
             "server": "http://PRAKTIKA-BC",
             "serverInstance": "BC",
             "authentication": "UserPassword",
-            "startupObjectId": 22,
+            "startupObjectId": 50105,
             "startupObjectType": "Page",
             "schemaUpdateMode": "ForceSync",
             "breakOnError": true,

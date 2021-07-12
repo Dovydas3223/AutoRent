@@ -59,5 +59,20 @@ page 50106 "Auto Card"
                 }
             }
         }
+
+
+    }
+    actions
+    {
+        area(Processing)
+        {
+            action("Reserve Auto")
+            {
+                RunObject = page "Auto Reservation List";
+                RunPageLink = "Auto No." = field("No.");
+                Image = Reserve;
+                Promoted = true;
+            }
+        }
     }
 }
