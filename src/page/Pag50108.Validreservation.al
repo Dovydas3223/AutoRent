@@ -1,11 +1,11 @@
-page 50107 "Auto Reservation List"
+page 50108 "Valid reservation"
 {
-    Caption = 'Auto Reservation List';
+    Caption = 'Valid reservations list';
     PageType = List;
     ApplicationArea = All;
     UsageCategory = Lists;
     SourceTable = "Auto Reservation";
-
+    Editable = false;
 
     layout
     {
@@ -36,4 +36,12 @@ page 50107 "Auto Reservation List"
             }
         }
     }
+
+    trigger OnOpenPage()
+    var
+        AutoReservation: Record "Auto Reservation";
+    begin
+        if not Rec.IsEmpty() then
+            Rec.SetFilter("Reservation Start", '>%1', CurrentDateTime());
+    end;
 }
