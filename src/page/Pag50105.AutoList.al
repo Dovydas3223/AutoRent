@@ -66,7 +66,14 @@ page 50105 "Auto List"
             {
                 RunObject = page "Auto Reservation List";
                 RunPageLink = "Auto No." = field("No.");
-                Image = Reserve;
+                Image = LinesFromJob;
+                Promoted = true;
+            }
+            action("Valid Reservations")
+            {
+                RunObject = page "Valid reservation";
+                RunPageLink = "Auto No." = field("No.");
+                Image = CompleteLine;
                 Promoted = true;
             }
         }
