@@ -19,11 +19,16 @@ table 50106 "Auto Rent Header"
 
             trigger OnValidate()
             var
-                ClientInDebtErrorLbl: Label 'Client %1 has debts';
+                ClientInDebtErrorLbl: Label 'Client No. %1 has debt';
+                ClientIsBlockedErrorLbl: Label 'Client No. %1 is blocked';
             begin
-                if Rec."Client No." <> xRec."Client No." then
+                if Rec."Client No." <> xRec."Client No." then begin
                     if IsClientInDebt() then
                         Error(ClientInDebtErrorLbl, Rec."Client No.");
+                    if IsClientBlocked() then
+                        Error(ClientIsBlockedErrorLbl, Rec."Client No.");
+                end;
+
             end;
         }
         field(11; "Driver License"; Blob)
@@ -101,6 +106,14 @@ table 50106 "Auto Rent Header"
                 exit(true);
         end;
         exit(false);
+    end;
+
+    procedure IsClientBlocked(): Boolean
+    var
+        Customer: Record Customer;
+    begin
+        if Customer.Find(Rec."Client No.") then
+            exit(Customer.IsBlocked());
     end;
 
 }
