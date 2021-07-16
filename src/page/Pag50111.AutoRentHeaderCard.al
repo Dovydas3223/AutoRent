@@ -14,10 +14,17 @@ page 50111 "Auto Rent Header Card"
                 field("No."; Rec."No.")
                 {
                     ApplicationArea = All;
+
+                    trigger OnAssistEdit()
+                    begin
+                        if Rec."No." = '' then
+                            Rec."No." := Rec.GetAutoNoFromNoSeries();
+                    end;
                 }
                 field("Client No."; Rec."Client No.")
                 {
                     ApplicationArea = All;
+
                 }
                 field("Driver License"; Rec."Driver License")
                 {

@@ -16,6 +16,15 @@ table 50106 "Auto Rent Header"
             Caption = 'Client No.';
             DataClassification = CustomerContent;
             TableRelation = Customer;
+
+            trigger OnValidate()
+            var
+                ClientInDebtErrorLbl: Label 'Client %1 has debts';
+            begin
+                if Rec."Client No." <> xRec."Client No." then
+                    if IsClientInDebt() then
+                        Error(ClientInDebtErrorLbl, Rec."Client No.");
+            end;
         }
         field(11; "Driver License"; Blob)
         {
@@ -61,5 +70,37 @@ table 50106 "Auto Rent Header"
             Clustered = true;
         }
     }
+
+    trigger OnInsert()
+    begin
+        if "No." = '' then
+            "No." := GetAutoNoFromNoSeries();
+    end;
+
+    procedure GetAutoNoFromNoSeries(): Code[20]
+    var
+        AutoSetup: Record "Auto Setup";
+        NoSeriesManagement: Codeunit NoSeriesManagement;
+    begin
+        AutoSetup.Get();
+        AutoSetup.TestField("Rent Card Nos.");
+        exit(NoSeriesManagement.GetNextNo(AutoSetup."Rent Card Nos.", WorkDate(), true));
+    end;
+
+    procedure IsClientInDebt(): Boolean
+    var
+        CustLedgerEntry: Record "Cust. Ledger Entry";
+        "sum": Decimal;
+    begin
+        CustLedgerEntry.SetRange("Customer No.", Rec."Client No.");
+        if CustLedgerEntry.FindSet() then begin
+            repeat begin
+                "sum" += CustLedgerEntry."Amount (LCY)";
+            end until CustLedgerEntry.Next() = 0;
+            if sum < 0 then
+                exit(true);
+        end;
+        exit(false);
+    end;
 
 }
