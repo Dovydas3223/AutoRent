@@ -1,17 +1,15 @@
-page 50110 "Auto Rent Header"
+page 50111 "Auto Rent Header Card"
 {
-    Caption = 'Auto Rent Header List';
-    PageType = List;
-    ApplicationArea = All;
-    UsageCategory = Lists;
-    CardPageId = "Auto Rent Header Card";
+    Caption = 'Auto Rent Header Card';
+    PageType = Document;
+    UsageCategory = None;
     SourceTable = "Auto Rent Header";
 
     layout
     {
         area(Content)
         {
-            repeater(GroupName)
+            group(General)
             {
                 field("No."; Rec."No.")
                 {
@@ -49,8 +47,6 @@ page 50110 "Auto Rent Header"
                 {
                     ApplicationArea = All;
                 }
-
-
             }
         }
     }
