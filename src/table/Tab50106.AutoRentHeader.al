@@ -51,11 +51,19 @@ table 50106 "Auto Rent Header"
         {
             Caption = 'Reserved From';
             DataClassification = CustomerContent;
+            trigger OnValidate()
+            begin
+                IsReservationStartValid();
+            end;
         }
         field(41; "Reserved To"; DateTime)
         {
             Caption = 'Reserved To';
             DataClassification = CustomerContent;
+            trigger OnValidate()
+            begin
+                IsReservationEndValid();
+            end;
         }
         field(50; "Price"; Decimal)
         {
@@ -115,6 +123,28 @@ table 50106 "Auto Rent Header"
     begin
         if Customer.Get(Rec."Client No.") then
             exit(Customer.IsBlocked());
+    end;
+
+    procedure IsReservationStartValid()
+    var
+        AutoReservation: Record "Auto Reservation";
+        NoValidReservationErr: Label 'There is no valid reservation for this Auto %1 and Client %2';
+    begin
+        AutoReservation.SetRange("Reservation Start", Rec."Reserved From");
+        if AutoReservation.FindFirst() then
+            if (AutoReservation."Auto No." <> Rec."Auto No.") OR (AutoReservation."Client No." <> Rec."Client No.") then
+                Error(NoValidReservationErr, Rec."Auto No.", Rec."Client No.");
+    end;
+
+    procedure IsReservationEndValid()
+    var
+        AutoReservation: Record "Auto Reservation";
+        NoValidReservationErr: Label 'There is no valid reservation for this Auto %1 and Client %2';
+    begin
+        AutoReservation.SetRange("Reservation End", Rec."Reserved To");
+        if AutoReservation.FindFirst() then
+            if (AutoReservation."Auto No." <> Rec."Auto No.") OR (AutoReservation."Client No." <> Rec."Client No.") then
+                Error(NoValidReservationErr, Rec."Auto No.", Rec."Client No.");
     end;
 
 }
