@@ -55,10 +55,6 @@ page 50111 "Auto Rent Header Card"
                 field("Status"; Rec."Status")
                 {
                     ApplicationArea = All;
-                    trigger OnValidate()
-                    begin
-                        IsEditable := Rec.TestStatusOpen();
-                    end;
                 }
             }
         }
