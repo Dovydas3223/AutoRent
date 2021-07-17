@@ -70,6 +70,7 @@ table 50106 "Auto Rent Header"
         {
             Caption = 'Price';
             DataClassification = CustomerContent;
+            Editable = false;
         }
         field(60; Status; Enum "Auto Rent Status")
         {
@@ -148,5 +149,13 @@ table 50106 "Auto Rent Header"
             if (AutoReservation."Auto No." <> Rec."Auto No.") OR (AutoReservation."Client No." <> Rec."Client No.") then
                 Error(NoValidReservationErr, Rec."Auto No.", Rec."Client No.");
     end;
+
+    procedure TestStatusOpen(): Boolean
+    begin
+        if Status <> Status::Open then
+            exit(false);
+        exit(true);
+    end;
+
 
 }
