@@ -75,6 +75,7 @@ table 50106 "Auto Rent Header"
         {
             Caption = 'Status';
             DataClassification = CustomerContent;
+            Editable = false;
         }
     }
 
