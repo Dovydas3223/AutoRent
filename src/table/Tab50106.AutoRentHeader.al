@@ -46,6 +46,7 @@ table 50106 "Auto Rent Header"
         {
             Caption = 'Auto No.';
             DataClassification = CustomerContent;
+            TableRelation = Auto;
         }
         field(40; "Reserved From"; DateTime)
         {
