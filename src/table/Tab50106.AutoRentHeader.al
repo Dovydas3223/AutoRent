@@ -31,9 +31,10 @@ table 50106 "Auto Rent Header"
 
             end;
         }
-        field(11; "Driver License"; Blob)
+        field(11; "Driver License"; Media)
         {
             Caption = 'Driver License';
+            ExtendedDatatype = Person;
             DataClassification = CustomerContent;
         }
         field(20; "Date"; Date)
@@ -112,7 +113,7 @@ table 50106 "Auto Rent Header"
     var
         Customer: Record Customer;
     begin
-        if Customer.Find(Rec."Client No.") then
+        if Customer.Get(Rec."Client No.") then
             exit(Customer.IsBlocked());
     end;
 
