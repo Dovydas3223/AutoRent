@@ -24,11 +24,6 @@ page 50111 "Auto Rent Header Card"
                 field("Client No."; Rec."Client No.")
                 {
                     ApplicationArea = All;
-
-                }
-                field("Driver License"; Rec."Driver License")
-                {
-                    ApplicationArea = All;
                 }
                 field("Date"; Rec."Date")
                 {
@@ -54,6 +49,16 @@ page 50111 "Auto Rent Header Card"
                 {
                     ApplicationArea = All;
                 }
+
+            }
+
+        }
+        area(FactBoxes)
+        {
+            part(DriverLicense; "Driver License")
+            {
+                ApplicationArea = all;
+                SubPageLink = "No." = FIELD("No.");
             }
         }
     }
