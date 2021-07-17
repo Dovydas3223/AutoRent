@@ -56,6 +56,13 @@ page 50111 "Auto Rent Header Card"
                 {
                     ApplicationArea = All;
                 }
+
+            }
+            part(AutoRentLineListPart; "Auto Rent Line ListPart")
+            {
+                Caption = 'Auto Rent Line ListPart';
+                ApplicationArea = All;
+                SubPageLink = "No." = field("No.");
             }
         }
         area(FactBoxes)
