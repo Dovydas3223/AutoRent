@@ -21,10 +21,6 @@ page 50110 "Auto Rent Header"
                 {
                     ApplicationArea = All;
                 }
-                field("Driver License"; Rec."Driver License")
-                {
-                    ApplicationArea = All;
-                }
                 field("Date"; Rec."Date")
                 {
                     ApplicationArea = All;
