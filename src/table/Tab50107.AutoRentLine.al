@@ -21,6 +21,11 @@ table 50107 "Auto Rent Line"
         {
             Caption = 'Type';
             DataClassification = CustomerContent;
+            trigger OnValidate()
+            begin
+                if Rec."Type" <> xRec."Type" then
+                    ShowMainAutoServiceError();
+            end;
         }
         field(11; "Type No."; Code[20])
         {
@@ -32,6 +37,7 @@ table 50107 "Auto Rent Line"
             trigger OnValidate()
             begin
                 if Rec."Type No." <> xRec."Type No." then begin
+                    ShowMainAutoServiceError();
                     Rec.GetDescription();
                     Rec.GetUnitOfMeasure();
                     Rec.GetUnitPrice();
@@ -59,7 +65,7 @@ table 50107 "Auto Rent Line"
             trigger OnValidate()
             begin
                 if (Rec.Quantity <> xRec.Quantity) and (Rec."Unit price" <> 0) then
-                    CalculateFinalPrice()
+                    CalculateFinalPrice();
             end;
         }
         field(40; "Unit price"; Decimal)
@@ -80,6 +86,11 @@ table 50107 "Auto Rent Line"
             DataClassification = CustomerContent;
             Editable = false;
         }
+        field(60; "Is First"; Boolean)
+        {
+            Caption = 'Is First';
+            DataClassification = CustomerContent;
+        }
 
     }
 
@@ -90,6 +101,42 @@ table 50107 "Auto Rent Line"
             Clustered = true;
         }
     }
+
+    trigger OnDelete()
+    begin
+        ShowMainAutoServiceError()
+    end;
+
+    procedure ShowMainAutoServiceError()
+    var
+        MainServiceDeletionErrLbl: Label 'Resource %1 is this car main rent service';
+    begin
+        if Rec."Is First" then
+            Error(MainServiceDeletionErrLbl, Rec."Type No.");
+    end;
+
+    procedure InsertFirst(RentHeader: Record "Auto Rent Header")
+    var
+        Auto: Record Auto;
+        Resource: Record Resource;
+    begin
+        Auto.SetRange("No.", RentHeader."Auto No.");
+        Auto.FindFirst();
+        Rec.SetRange("No.", RentHeader."No.");
+        Rec.DeleteAll();
+        if Rec.IsEmpty() then begin
+            Rec.Init();
+            Rec."No." := RentHeader."No.";
+            Rec."Line No." := 10000;
+            Rec."Type" := Rec."Type"::Resource;
+            Rec."Type No." := Auto."Rent Service";
+            Rec.GetDescription();
+            Rec.GetUnitOfMeasure();
+            Rec.GetUnitPrice();
+            Rec."Is First" := true;
+            Rec.Insert();
+        end;
+    end;
 
     procedure CalculateFinalPrice()
     begin
@@ -146,5 +193,4 @@ table 50107 "Auto Rent Line"
             exit;
         end;
     end;
-
 }
