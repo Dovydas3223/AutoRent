@@ -5,19 +5,23 @@ page 50113 "Auto Rent Line ListPart"
     AutoSplitKey = true;
     DelayedInsert = true;
 
+
+
     layout
     {
         area(Content)
         {
-            repeater(GroupName)
+            repeater(General)
             {
                 field("Type"; Rec."Type")
                 {
                     ApplicationArea = All;
+                    Editable = Editable;
                 }
                 field("Type No."; Rec."Type No.")
                 {
                     ApplicationArea = All;
+                    Editable = Editable;
                 }
                 field("Type Description"; Rec."Type Description")
                 {
@@ -43,5 +47,16 @@ page 50113 "Auto Rent Line ListPart"
         }
     }
 
+    trigger OnAfterGetCurrRecord()
+    begin
+        if Rec."Is First" then begin
+            Editable := false;
+        end else begin
+            Editable := true;
+        end;
+    end;
+
+    var
+        Editable: Boolean;
 
 }
