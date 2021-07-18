@@ -37,6 +37,14 @@ page 50111 "Auto Rent Header Card"
                     ApplicationArea = All;
                     Editable = IsEditable;
 
+                    trigger OnValidate()
+                    var
+                        AutoRentLine: Record "Auto Rent Line";
+                    begin
+                        if Rec."Auto No." <> xRec."Auto No." then
+                            AutoRentLine.InsertFirst(Rec);
+                    end;
+
                 }
                 field("Reserved From"; Rec."Reserved From")
                 {
@@ -60,7 +68,7 @@ page 50111 "Auto Rent Header Card"
             }
             part(AutoRentLineListPart; "Auto Rent Line ListPart")
             {
-                Caption = 'Auto Rent Line ListPart';
+                Caption = 'Auto Rent Lines';
                 ApplicationArea = All;
                 SubPageLink = "No." = field("No.");
             }
@@ -71,6 +79,10 @@ page 50111 "Auto Rent Header Card"
             {
                 ApplicationArea = all;
                 SubPageLink = "No." = FIELD("No.");
+                Editable = Rec."Auto No." <> '';
+                Enabled = Rec."Auto No." <> '';
+                UpdatePropagation = Both;
+
             }
         }
     }
