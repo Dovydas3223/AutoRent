@@ -2,10 +2,9 @@ page 50113 "Auto Rent Line ListPart"
 {
     PageType = ListPart;
     SourceTable = "Auto Rent Line";
+
     AutoSplitKey = true;
     DelayedInsert = true;
-
-
 
     layout
     {
@@ -43,11 +42,25 @@ page 50113 "Auto Rent Line ListPart"
                 {
                     ApplicationArea = All;
                 }
+                field("Is first"; Rec."Is First")
+                {
+                    ApplicationArea = All;
+                }
             }
         }
     }
 
-    trigger OnAfterGetCurrRecord()
+    trigger OnOpenPage()
+    var
+        RentHeader: Record "Auto Rent Header";
+    begin
+        RentHeader.Get();
+        repeat begin
+            Message(Rec."No.", Rec."Line No.");
+        end until Rec.Next() = 0;
+    end;
+
+    trigger OnAfterGetRecord()
     begin
         if Rec."Is First" then begin
             Editable := false;
@@ -57,6 +70,7 @@ page 50113 "Auto Rent Line ListPart"
     end;
 
     var
+        CurrAutoRentHeader: Record "Auto Rent Header";
         Editable: Boolean;
 
 }
