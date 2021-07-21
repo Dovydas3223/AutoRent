@@ -139,8 +139,25 @@ page 50111 "Auto Rent Header Card"
                 var
                     CarReturnMgmt: Codeunit "Car Return Management";
                 begin
-                    CarReturnMgmt.CreateNewContractVersion(Rec);
+                    CarReturnMgmt.ReturnCar(Rec);
                 end;
+            }
+            action("Auto Damage")
+            {
+                Caption = 'Auto Damage';
+                ApplicationArea = All;
+                Image = Edit;
+                Promoted = true;
+                PromotedCategory = Category4;
+
+                trigger OnAction()
+                var
+                    AutoRentDamage: Record "Auto Rent Damage";
+                begin
+                    AutoRentDamage.SetRange("No.", Rec."No.");
+                    Page.RunModal(0, AutoRentDamage);
+                end;
+
             }
 
 
