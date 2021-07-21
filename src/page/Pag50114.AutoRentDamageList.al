@@ -4,6 +4,8 @@ page 50114 "Auto Rent Damage List"
     ApplicationArea = All;
     UsageCategory = Lists;
     SourceTable = "Auto Rent Damage";
+    AutoSplitKey = true;
+    DelayedInsert = true;
 
     layout
     {
