@@ -4,6 +4,7 @@ page 50115 "Finished Auto Rent Header List"
     PageType = List;
     ApplicationArea = All;
     UsageCategory = Administration;
+    CardPageId = "Finished Auto Rend Header Card";
     SourceTable = "Finished Auto Rent Header";
     Editable = false;
 
