@@ -1,9 +1,8 @@
 page 50117 "Finished Auto Rend Header Card"
 {
     Caption = 'Finished Auto Rent Header';
-    PageType = Card;
-    ApplicationArea = All;
-    UsageCategory = Administration;
+    PageType = Document;
+    UsageCategory = None;
     SourceTable = "Finished Auto Rent Header";
     Editable = false;
 
@@ -41,6 +40,26 @@ page 50117 "Finished Auto Rend Header Card"
                 {
                     ApplicationArea = All;
                 }
+
+            }
+
+
+            part(FinishedAutoRentListPart; "Finished Auto Rent ListPart")
+            {
+                Caption = 'Auto Rent Lines';
+                ApplicationArea = All;
+                SubPageLink = "No." = field("No.");
+            }
+        }
+        area(FactBoxes)
+        {
+            part(DriverLicense; "Driver License")
+            {
+                ApplicationArea = all;
+                SubPageLink = "No." = FIELD("No.");
+                Editable = Rec."Auto No." <> '';
+                Enabled = Rec."Auto No." <> '';
+                UpdatePropagation = Both;
 
             }
         }
