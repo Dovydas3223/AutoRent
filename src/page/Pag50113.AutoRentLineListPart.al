@@ -50,15 +50,7 @@ page 50113 "Auto Rent Line ListPart"
         }
     }
 
-    trigger OnOpenPage()
-    var
-        RentHeader: Record "Auto Rent Header";
-    begin
-        RentHeader.Get();
-        repeat begin
-            Message(Rec."No.", Rec."Line No.");
-        end until Rec.Next() = 0;
-    end;
+
 
     trigger OnAfterGetRecord()
     begin
