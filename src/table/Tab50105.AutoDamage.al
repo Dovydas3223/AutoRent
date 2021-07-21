@@ -2,6 +2,7 @@ table 50105 "Auto Damage"
 {
     Caption = 'Auto Damage Table';
     DataClassification = CustomerContent;
+    LookupPageId = "Auto Damage List";
 
     fields
     {
@@ -10,22 +11,26 @@ table 50105 "Auto Damage"
             Caption = 'Auto No.';
             DataClassification = CustomerContent;
             TableRelation = Auto;
+            Editable = false;
         }
         field(2; "Line No."; Integer)
         {
             Caption = 'Line No.';
             DataClassification = CustomerContent;
             AutoIncrement = true;
+            Editable = false;
         }
         field(10; "Date"; Date)
         {
             Caption = 'Date';
             DataClassification = CustomerContent;
+            Editable = false;
         }
         field(20; "Description"; Text[255])
         {
             Caption = 'Description';
             DataClassification = CustomerContent;
+            Editable = false;
         }
         field(30; Status; Enum "Auto Damage Status")
         {
