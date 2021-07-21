@@ -2,6 +2,10 @@ table 50109 "Finished Auto Rent Header"
 {
     Caption = 'Finished Auto Rent Header';
     DataClassification = CustomerContent;
+    LookupPageId = "Finished Auto Rent Header List";
+    DrillDownPageId = "Finished Auto Rent Header List";
+
+
     fields
     {
         field(1; "No."; Code[20])
