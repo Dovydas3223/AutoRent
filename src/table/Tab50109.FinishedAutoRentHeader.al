@@ -1,10 +1,9 @@
 table 50109 "Finished Auto Rent Header"
 {
-    Caption = 'Finished Auto Rent Header';
+    Caption = 'Auto Rent Header';
     DataClassification = CustomerContent;
     LookupPageId = "Finished Auto Rent Header List";
     DrillDownPageId = "Finished Auto Rent Header List";
-
 
     fields
     {
@@ -47,7 +46,8 @@ table 50109 "Finished Auto Rent Header"
         field(50; "Price"; Decimal)
         {
             Caption = 'Price';
-            DataClassification = CustomerContent;
+            FieldClass = FlowField;
+            CalcFormula = sum("Finished Auto Rent Line"."Final price" where("No." = field("No.")));
         }
     }
 
