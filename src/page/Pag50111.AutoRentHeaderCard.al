@@ -4,7 +4,7 @@ page 50111 "Auto Rent Header Card"
     PageType = Document;
     UsageCategory = None;
     SourceTable = "Auto Rent Header";
-    PromotedActionCategories = 'New,Process,Report,Manage,Contract Status';
+    PromotedActionCategories = 'New,Process,Report,Manage,Contract Status,Return Car';
 
     layout
     {
@@ -124,6 +124,22 @@ page 50111 "Auto Rent Header Card"
                 begin
                     ContractStatusManager.PerformManualOpen(Rec);
                     IsEditable := Rec.TestStatusOpen();
+                end;
+            }
+
+            action("Return Car")
+            {
+                Caption = 'Return Car';
+                ApplicationArea = All;
+                Image = Return;
+                Promoted = true;
+                PromotedCategory = Category4;
+
+                trigger OnAction()
+                var
+                    CarReturnMgmt: Codeunit "Car Return Management";
+                begin
+                    CarReturnMgmt.CreateNewContractVersion(Rec);
                 end;
             }
 
