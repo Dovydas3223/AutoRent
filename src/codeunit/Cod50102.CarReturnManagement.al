@@ -1,17 +1,20 @@
 codeunit 50102 "Car Return Management"
 {
-
-
     procedure ReturnCar(var AutoContract: Record "Auto Rent Header")
+    var
+        NewVersionCreatedLbl: Label 'Contract %1 was removed';
     begin
-        CreateNewContractVersion(AutoContract);
+        CreateFinishedContract(AutoContract);
         TransferAutoDamage(AutoContract);
+        RemoveAutoRentContract(AutoContract);
+        Message(NewVersionCreatedLbl, AutoContract."No.");
     end;
 
-    procedure CreateNewContractVersion(var AutoContract: Record "Auto Rent Header")
+    procedure CreateFinishedContract(var AutoContract: Record "Auto Rent Header")
     var
         FinishedHeader: Record "Finished Auto Rent Header";
-        NewVersionCreatedLbl: Label 'Contract %1 New Version Created %2';
+        FinishedLines: Record "Finished Auto Rent Line";
+        AutoRentLine: Record "Auto Rent Line";
     begin
         FinishedHeader.SetRange("No.", AutoContract."No.");
         if not FinishedHeader.FindLast() then
@@ -19,6 +22,23 @@ codeunit 50102 "Car Return Management"
 
         FinishedHeader.TransferFields(AutoContract);
         FinishedHeader.Insert();
+
+        AutoRentLine.SetRange("No.", AutoContract."No.");
+        if not AutoRentLine.FindSet() then
+            exit;
+
+        FinishedLines.SetRange("No.", AutoContract."No.");
+
+        if not FinishedLines.FindLast() then
+            FinishedLines.Init();
+
+        repeat begin
+            FinishedLines.TransferFields(AutoRentLine);
+            FinishedLines.Insert();
+        end until AutoRentLine.Next() = 0;
+
+
+
     end;
 
     procedure TransferAutoDamage(var AutoContract: Record "Auto Rent Header")
@@ -42,9 +62,17 @@ codeunit 50102 "Car Return Management"
             AutoDamage.Status := AutoDamage.Status::Relevant;
             AutoDamage.Insert();
         end until AutoRentDamage.Next() = 0;
-
-
     end;
 
+    procedure RemoveAutoRentContract(var AutoContract: Record "Auto Rent Header")
+    var
+        AutoRentLine: Record "Auto Rent Line";
+    begin
+        AutoRentLine.SetRange("No.", AutoContract."No.");
+        if AutoRentLine.FindSet() then
+            AutoRentLine.DeleteAll();
+
+        AutoContract.Delete();
+    end;
 
 }
