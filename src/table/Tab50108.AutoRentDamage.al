@@ -2,10 +2,11 @@ table 50108 "Auto Rent Damage"
 {
     Caption = 'Auto Rent Damage';
     DataClassification = CustomerContent;
+    LookupPageId = "Auto Rent Damage List";
 
     fields
     {
-        field(1; "No."; Integer)
+        field(1; "No."; Code[20])
         {
             Caption = 'No.';
             DataClassification = CustomerContent;
