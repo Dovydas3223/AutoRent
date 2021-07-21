@@ -81,6 +81,22 @@ page 50106 "Auto Card"
                 Image = CompleteLine;
                 Promoted = true;
             }
+
+            action("Open Auto Damage List")
+            {
+                Caption = 'Open Auto Damage List';
+                ApplicationArea = All;
+                Image = List;
+
+                trigger OnAction()
+                var
+                    AutoDamage: Record "Auto Damage";
+                begin
+                    AutoDamage.SetRange("Auto No.", Rec."No.");
+                    Page.RunModal(0, AutoDamage);
+                end;
+            }
         }
+
     }
 }
