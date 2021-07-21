@@ -2,7 +2,6 @@ page 50113 "Auto Rent Line ListPart"
 {
     PageType = ListPart;
     SourceTable = "Auto Rent Line";
-
     AutoSplitKey = true;
     DelayedInsert = true;
 
@@ -59,6 +58,11 @@ page 50113 "Auto Rent Line ListPart"
         end else begin
             Editable := true;
         end;
+    end;
+
+    trigger OnOpenPage()
+    begin
+        Editable := true;
     end;
 
     var
