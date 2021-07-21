@@ -133,7 +133,9 @@ page 50111 "Auto Rent Header Card"
 
     trigger OnOpenPage()
     begin
-        if Rec.Status = Rec.Status::Open then
+        if Rec.Status = Rec.Status::Issued then
+            CurrPage.Editable(false)
+        else
             IsEditable := true;
     end;
 
