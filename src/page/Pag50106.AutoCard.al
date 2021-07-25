@@ -96,6 +96,19 @@ page 50106 "Auto Card"
                     Page.RunModal(0, AutoDamage);
                 end;
             }
+
+            action("Print History")
+            {
+                Caption = 'Print History';
+                ApplicationArea = All;
+                Image = Print;
+
+                trigger OnAction()
+                begin
+                    Rec.SetRange("No.", Rec."No.");
+                    Report.RunModal(50101, true, true, Rec);
+                end;
+            }
         }
 
     }

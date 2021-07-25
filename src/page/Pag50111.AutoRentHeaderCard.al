@@ -160,6 +160,21 @@ page 50111 "Auto Rent Header Card"
 
             }
 
+            action("Print Card")
+            {
+                Caption = 'Print Card';
+                ApplicationArea = All;
+                Image = Print;
+                Promoted = true;
+                PromotedCategory = Category4;
+
+                trigger OnAction()
+                begin
+                    Rec.SetRange("No.", Rec."No.");
+                    Report.RunModal(50100, true, true, Rec);
+                end;
+            }
+
 
         }
     }
@@ -174,4 +189,5 @@ page 50111 "Auto Rent Header Card"
 
     var
         IsEditable: Boolean;
+        cust: Record Customer;
 }

@@ -69,8 +69,13 @@ table 50106 "Auto Rent Header"
         field(50; "Price"; Decimal)
         {
             Caption = 'Price';
-            DataClassification = CustomerContent;
             Editable = false;
+            FieldClass = FlowField;
+            CalcFormula = sum("Auto Rent Line"."Final price" where("No." = field("No.")));
+            trigger OnValidate()
+            begin
+                Price := CalculatePrice();
+            end;
         }
         field(60; Status; Enum "Auto Rent Status")
         {
@@ -92,6 +97,20 @@ table 50106 "Auto Rent Header"
     begin
         if "No." = '' then
             "No." := GetAutoNoFromNoSeries();
+    end;
+
+
+    procedure CalculatePrice(): Decimal
+    var
+        AutoRentLine: Record "Auto Rent Line";
+        "Sum": Decimal;
+    begin
+        AutoRentLine.SetRange("No.", Rec."No.");
+        if AutoRentLine.FindSet() then
+            repeat begin
+                "Sum" += AutoRentLine."Final price";
+            end until AutoRentLine.Next() = 0;
+        exit("Sum");
     end;
 
     procedure GetAutoNoFromNoSeries(): Code[20]
