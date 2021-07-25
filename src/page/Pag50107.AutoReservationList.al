@@ -16,6 +16,7 @@ page 50107 "Auto Reservation List"
                 field("Auto No."; Rec."Auto No.")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'What car will be reserved.';
                 }
                 field("Line No."; Rec."Line No.")
                 {
@@ -24,14 +25,17 @@ page 50107 "Auto Reservation List"
                 field("Client No."; Rec."Client No.")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Who is renting the car.';
                 }
                 field("Reservation Start"; Rec."Reservation Start")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Start of reservation.';
                 }
                 field("Reservation End"; Rec."Reservation End")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'End of reservation.';
                 }
             }
         }

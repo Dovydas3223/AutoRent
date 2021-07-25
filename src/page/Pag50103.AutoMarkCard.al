@@ -14,10 +14,12 @@ page 50103 "Auto Mark Card"
                 field("No."; Rec."Code")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Car mark no.';
                 }
                 field(Description; Rec.Description)
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Car mark description.';
                 }
             }
         }

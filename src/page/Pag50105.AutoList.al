@@ -17,42 +17,52 @@ page 50105 "Auto List"
                 field("No."; Rec."No.")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Auto No.';
                 }
                 field(Name; Rec.Name)
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Auto Name.';
                 }
                 field(Mark; Rec.Mark)
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Auto mark dropdown.';
                 }
                 field(Model; Rec.Model)
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Auto model dropdown.';
                 }
                 field("Year of manufacture"; Rec."Year of manufacture")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Year of manufacture.';
                 }
                 field("Insurance validity"; Rec."Insurance validity")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Date of insurance expiration.';
                 }
                 field("TI End"; Rec."TI End")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Date of TI expiration.';
                 }
                 field("Location Code"; Rec."Location Code")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Auto location';
                 }
                 field("Rent Service"; Rec."Rent Service")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Auto provided service.';
                 }
                 field("Rent Price"; Rec."Rent Price")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Provided service price.';
                 }
             }
         }
@@ -75,6 +85,20 @@ page 50105 "Auto List"
                 RunPageLink = "Auto No." = field("No.");
                 Image = CompleteLine;
                 Promoted = true;
+            }
+            action("Open Auto Damage List")
+            {
+                Caption = 'Open Auto Damage List';
+                ApplicationArea = All;
+                Image = List;
+
+                trigger OnAction()
+                var
+                    AutoDamage: Record "Auto Damage";
+                begin
+                    AutoDamage.SetRange("Auto No.", Rec."No.");
+                    Page.RunModal(0, AutoDamage);
+                end;
             }
         }
     }

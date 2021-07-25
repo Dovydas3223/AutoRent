@@ -15,6 +15,7 @@ page 50111 "Auto Rent Header Card"
                 field("No."; Rec."No.")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Auto rent document No.';
 
                     trigger OnAssistEdit()
                     begin
@@ -26,16 +27,19 @@ page 50111 "Auto Rent Header Card"
                 {
                     ApplicationArea = All;
                     Editable = IsEditable;
+                    ToolTip = 'Auto rent document client No.';
                 }
                 field("Date"; Rec."Date")
                 {
                     ApplicationArea = All;
                     Editable = IsEditable;
+                    ToolTip = 'Date of document filing.';
                 }
                 field("Auto No."; Rec."Auto No.")
                 {
                     ApplicationArea = All;
                     Editable = IsEditable;
+                    ToolTip = 'Renting auto No.';
 
                     trigger OnValidate()
                     var
@@ -50,19 +54,23 @@ page 50111 "Auto Rent Header Card"
                 {
                     ApplicationArea = All;
                     Editable = IsEditable;
+                    ToolTip = 'Valid reservation start.';
                 }
                 field("Reserved To"; Rec."Reserved To")
                 {
                     ApplicationArea = All;
                     Editable = IsEditable;
+                    ToolTip = 'Valid reservation end.';
                 }
                 field("Price"; Rec."Price")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Auto rent price.';
                 }
                 field("Status"; Rec."Status")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Auto rent document status.';
                 }
 
             }

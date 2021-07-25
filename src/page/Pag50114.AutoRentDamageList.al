@@ -16,6 +16,7 @@ page 50114 "Auto Rent Damage List"
                 field("No."; Rec."No.")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Auto rent document No.';
                 }
                 field("Line No."; Rec."Line No.")
                 {
@@ -25,10 +26,12 @@ page 50114 "Auto Rent Damage List"
                 field("Date"; Rec."Date")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Date of when damage was filed.';
                 }
                 field("Description"; Rec."Description")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Description of damage done.';
                 }
             }
         }

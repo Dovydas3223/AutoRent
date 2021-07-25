@@ -15,35 +15,39 @@ page 50113 "Auto Rent Line ListPart"
                 {
                     ApplicationArea = All;
                     Editable = Editable;
+                    ToolTip = 'Line type.';
                 }
                 field("Type No."; Rec."Type No.")
                 {
                     ApplicationArea = All;
                     Editable = Editable;
+                    ToolTip = 'Item or Resource No.';
                 }
                 field("Type Description"; Rec."Type Description")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Item or Resource Description.';
                 }
                 field("Unit"; Rec.Unit)
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Service unit of measure.';
                 }
                 field("Quantity"; Rec.Quantity)
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Time or item quantity.';
                 }
                 field("Unit Price"; Rec."Unit price")
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Not editable unit price';
                 }
                 field("Final Price"; Rec."Final price")
                 {
                     ApplicationArea = All;
-                }
-                field("Is first"; Rec."Is First")
-                {
-                    ApplicationArea = All;
+                    Tooltip = 'Final price calculated by multiplying quantity and unit price.';
+
                 }
             }
         }

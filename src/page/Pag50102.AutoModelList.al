@@ -18,14 +18,17 @@ page 50102 "Auto Model List"
                 field("Auto Mark Code"; Rec."Auto Mark Code")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Auto mark No.';
                 }
                 field("Code"; Rec."Code")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Auto model No.';
                 }
                 field(Description; Rec.Description)
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Auto model description.';
                 }
             }
         }

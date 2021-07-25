@@ -16,6 +16,7 @@ page 50108 "Valid reservation"
                 field("Auto No."; Rec."Auto No.")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Reserved Time Auto No.';
                 }
                 field("Line No."; Rec."Line No.")
                 {
@@ -24,14 +25,17 @@ page 50108 "Valid reservation"
                 field("Client No."; Rec."Client No.")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Reserved time client No.';
                 }
                 field("Reservation Start"; Rec."Reservation Start")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Auto reservation start.';
                 }
                 field("Reservation End"; Rec."Reservation End")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Auto reservation start.';
                 }
             }
         }
