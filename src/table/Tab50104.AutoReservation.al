@@ -45,6 +45,7 @@ table 50104 "Auto Reservation"
             begin
                 if Rec."Reservation End" <> xRec."Reservation End" then begin
                     Rec.IsDatetimeOverlaping(Rec."Reservation End");
+                    Rec.checkDate();
                 end;
             end;
         }
@@ -70,13 +71,27 @@ table 50104 "Auto Reservation"
         // end;
         AutoRes.SetRange("Auto No.", Rec."Auto No.");
         AutoRes.FindSet();
+        AutoRes.SetCurrentKey("Reservation Start");
+        if AutoRes.Get(ReservationTime) then
+            Error(StartDateErrorLbl, ReservationTime, AutoRes."Reservation Start", AutoRes."Reservation End");
         repeat begin
-            if ((ReservationTime >= AutoRes."Reservation Start") and (ReservationTime <= AutoRes."Reservation End")) then
-                Error(StartDateErrorLbl, ReservationTime, AutoRes."Reservation Start", AutoRes."Reservation End");
+            // if ((ReservationTime >= AutoRes."Reservation Start") and (ReservationTime <= AutoRes."Reservation End")) then
+            //     Error(StartDateErrorLbl, ReservationTime, AutoRes."Reservation Start", AutoRes."Reservation End");
             if (Rec."Reservation Start" <> 0DT) and (Rec."Reservation End" <> 0DT) then begin
                 if (Rec."Reservation Start" < AutoRes."Reservation Start") and (Rec."Reservation End" > AutoRes."Reservation End") then
                     Error(DateErrorLbl, ReservationTime, AutoRes."Reservation Start", AutoRes."Reservation End");
             end;
         end until AutoRes.Next() = 0;
+    end;
+
+    procedure checkDate()
+    var
+        ReservationTimeErrorLbl: Label 'Reservation end %1 can not be before reservation start %2.';
+    begin
+        if "Reservation End" < "Reservation Start" then
+            Error(ReservationTimeErrorLbl, "Reservation End", "Reservation Start");
+
+        Message(Format(("Reservation End" - "Reservation Start") > 010000));
+
     end;
 }
