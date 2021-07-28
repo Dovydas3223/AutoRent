@@ -14,6 +14,8 @@ page 50103 "Auto Mark Card"
                 field("No."; Rec."Code")
                 {
                     ApplicationArea = All;
+                    NotBlank = true;
+                    ShowMandatory = true;
                     ToolTip = 'Car mark no.';
                 }
                 field(Description; Rec.Description)
