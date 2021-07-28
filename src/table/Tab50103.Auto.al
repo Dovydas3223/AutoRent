@@ -9,6 +9,7 @@ table 50103 "Auto"
         {
             Caption = 'No.';
             DataClassification = CustomerContent;
+            NotBlank = true;
             Editable = false;
         }
         field(10; "Name"; Text[50])
