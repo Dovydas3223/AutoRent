@@ -2,6 +2,8 @@ table 50107 "Auto Rent Line"
 {
     Caption = 'Auto Rent Line';
     DataClassification = CustomerContent;
+    DrillDownPageID = "Auto Rent Line ListPart";
+    LookupPageID = "Auto Rent Line ListPart";
 
 
     fields
@@ -9,6 +11,7 @@ table 50107 "Auto Rent Line"
         field(1; "No."; Code[20])
         {
             Caption = 'No.';
+            NotBlank = true;
             DataClassification = CustomerContent;
         }
         field(2; "Line No."; Integer)
@@ -37,6 +40,7 @@ table 50107 "Auto Rent Line"
             trigger OnValidate()
             begin
                 if Rec."Type No." <> xRec."Type No." then begin
+                    CheckItemQuantityInWarehouse();
                     ShowMainAutoServiceError();
                     Rec.GetDescription();
                     Rec.GetUnitOfMeasure();
@@ -62,10 +66,13 @@ table 50107 "Auto Rent Line"
         {
             Caption = 'Quantity';
             DataClassification = CustomerContent;
+
             trigger OnValidate()
             begin
-                if (Rec.Quantity <> xRec.Quantity) and (Rec."Unit price" <> 0) then
+                if (Rec.Quantity <> xRec.Quantity) and (Rec."Unit price" <> 0) then begin
+                    CheckItemQuantityInWarehouse();
                     CalculateFinalPrice();
+                end;
             end;
         }
         field(40; "Unit price"; Decimal)
@@ -107,6 +114,23 @@ table 50107 "Auto Rent Line"
         ShowMainAutoServiceError()
     end;
 
+    procedure CheckItemQuantityInWarehouse()
+    var
+        Item: Record Item;
+        NoItemsInInventoryErr: Label 'Item % is not in stock. Available: %2';
+        NotEnoughItemsErr: Label 'There is not enough of Item %1 in the inventory';
+    begin
+        if (not Item.IsEmpty()) and (Rec.Type = Rec.Type::Item) then begin
+            Item.Get(Rec."Type No.");
+            Item.CalcFields(Inventory);
+            if Item.Inventory <= 0 then
+                Error(NoItemsInInventoryErr, Rec."Type No.");
+            if (Quantity <> 0) and (Item.Inventory < Quantity) then
+                Error(NotEnoughItemsErr, Rec."Type No.", Item.Inventory);
+        end;
+
+    end;
+
     procedure ShowMainAutoServiceError()
     var
         MainServiceDeletionErrLbl: Label 'Resource %1 is this car main rent service';
@@ -131,14 +155,18 @@ table 50107 "Auto Rent Line"
             Rec."Type" := Rec."Type"::Resource;
             Rec."Type No." := Auto."Rent Service";
             Rec.GetDescription();
-            Rec.GetUnitOfMeasure();
+            Rec.Unit := 'DAY';
             Rec.GetUnitPrice();
             Rec."Is First" := true;
             Rec.Insert();
         end;
     end;
 
+
     procedure CalculateFinalPrice()
+    var
+        autoheader: Record "Auto Rent Header";
+        autoheaderPage: Page "Auto Rent Header Card";
     begin
         Rec."Final price" := rec.Quantity * Rec."Unit price";
     end;
