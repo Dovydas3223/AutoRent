@@ -9,6 +9,7 @@ table 50110 "Finished Auto Rent Line"
         {
             Caption = 'No.';
             DataClassification = CustomerContent;
+            NotBlank = true;
         }
         field(2; "Line No."; Integer)
         {
