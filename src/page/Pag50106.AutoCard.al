@@ -60,6 +60,11 @@ page 50106 "Auto Card"
                 {
                     ApplicationArea = All;
                     ToolTip = 'Auto provided service.';
+
+                    trigger OnValidate()
+                    begin
+                        CurrPage.Update();
+                    end;
                 }
                 field("Rent Price"; Rec."Rent Price")
                 {
