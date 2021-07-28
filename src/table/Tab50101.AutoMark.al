@@ -9,6 +9,7 @@ table 50101 "Auto Mark"
         {
             Caption = 'Code';
             DataClassification = CustomerContent;
+            NotBlank = true;
         }
         field(10; "Description"; Text[100])
         {
