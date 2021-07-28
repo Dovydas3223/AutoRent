@@ -11,16 +11,15 @@ page 50113 "Auto Rent Line ListPart"
         {
             repeater(General)
             {
+
                 field("Type"; Rec."Type")
                 {
                     ApplicationArea = All;
-                    Editable = Editable;
                     ToolTip = 'Line type.';
                 }
                 field("Type No."; Rec."Type No.")
                 {
                     ApplicationArea = All;
-                    Editable = Editable;
                     ToolTip = 'Item or Resource No.';
                 }
                 field("Type Description"; Rec."Type Description")
@@ -37,6 +36,12 @@ page 50113 "Auto Rent Line ListPart"
                 {
                     ApplicationArea = All;
                     ToolTip = 'Time or item quantity.';
+
+                    trigger OnValidate()
+                    begin
+                        if Rec.Quantity <> xRec.Quantity then
+                            CurrPage.Update(true);
+                    end;
                 }
                 field("Unit Price"; Rec."Unit price")
                 {
@@ -48,29 +53,13 @@ page 50113 "Auto Rent Line ListPart"
                     ApplicationArea = All;
                     Tooltip = 'Final price calculated by multiplying quantity and unit price.';
 
+                    trigger OnValidate()
+                    begin
+                        if Rec.Quantity <> xRec.Quantity then
+                            CurrPage.Update(true);
+                    end;
                 }
             }
         }
     }
-
-
-
-    trigger OnAfterGetRecord()
-    begin
-        if Rec."Is First" then begin
-            Editable := false;
-        end else begin
-            Editable := true;
-        end;
-    end;
-
-    trigger OnOpenPage()
-    begin
-        Editable := true;
-    end;
-
-    var
-        CurrAutoRentHeader: Record "Auto Rent Header";
-        Editable: Boolean;
-
 }
