@@ -8,6 +8,7 @@ table 50102 "Auto Model"
         {
             Caption = 'Auto Mark Code';
             DataClassification = CustomerContent;
+            NotBlank = true;
             TableRelation = "Auto Mark";
         }
         field(10; "Code"; Code[20])
