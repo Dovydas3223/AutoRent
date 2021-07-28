@@ -26,19 +26,19 @@ page 50111 "Auto Rent Header Card"
                 field("Client No."; Rec."Client No.")
                 {
                     ApplicationArea = All;
-                    Editable = IsEditable;
+
                     ToolTip = 'Auto rent document client No.';
                 }
                 field("Date"; Rec."Date")
                 {
                     ApplicationArea = All;
-                    Editable = IsEditable;
+
                     ToolTip = 'Date of document filing.';
                 }
                 field("Auto No."; Rec."Auto No.")
                 {
                     ApplicationArea = All;
-                    Editable = IsEditable;
+
                     ToolTip = 'Renting auto No.';
 
                     trigger OnValidate()
@@ -53,19 +53,34 @@ page 50111 "Auto Rent Header Card"
                 field("Reserved From"; Rec."Reserved From")
                 {
                     ApplicationArea = All;
-                    Editable = IsEditable;
+
                     ToolTip = 'Valid reservation start.';
+
+                    trigger OnAssistEdit()
+                    begin
+                        Rec.OpenReservationlist();
+
+                    end;
+
+                    trigger OnValidate()
+                    begin
+
+                    end;
                 }
                 field("Reserved To"; Rec."Reserved To")
                 {
                     ApplicationArea = All;
-                    Editable = IsEditable;
+
                     ToolTip = 'Valid reservation end.';
                 }
                 field("Price"; Rec."Price")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Auto rent price.';
+                    trigger OnValidate()
+                    begin
+                        CurrPage.Update(true);
+                    end;
                 }
                 field("Status"; Rec."Status")
                 {
@@ -77,8 +92,10 @@ page 50111 "Auto Rent Header Card"
             part(AutoRentLineListPart; "Auto Rent Line ListPart")
             {
                 Caption = 'Auto Rent Lines';
+                Editable = Rec.Status = Rec.Status::Open;
                 ApplicationArea = All;
                 SubPageLink = "No." = field("No.");
+                UpdatePropagation = Both;
             }
         }
         area(FactBoxes)
@@ -89,8 +106,6 @@ page 50111 "Auto Rent Header Card"
                 SubPageLink = "No." = FIELD("No.");
                 Editable = Rec."Auto No." <> '';
                 Enabled = Rec."Auto No." <> '';
-                UpdatePropagation = Both;
-
             }
         }
     }
@@ -108,13 +123,14 @@ page 50111 "Auto Rent Header Card"
                 Promoted = true;
                 PromotedCategory = Category5;
 
-
                 trigger OnAction()
                 var
                     ContractStatusManager: Codeunit "Contract Status Manager";
+                    ItemTransferMngmt: Codeunit ItemTransferManagement;
                 begin
                     ContractStatusManager.PerformManualRelease(Rec);
-                    IsEditable := Rec.TestStatusOpen();
+                    CurrPage.Update(true);
+                    ItemTransferMngmt.TransferItemsToAutoWarehouse(Rec);
                 end;
             }
             action("Open Contract")
@@ -131,7 +147,7 @@ page 50111 "Auto Rent Header Card"
                     ContractStatusManager: Codeunit "Contract Status Manager";
                 begin
                     ContractStatusManager.PerformManualOpen(Rec);
-                    IsEditable := Rec.TestStatusOpen();
+                    CurrPage.Update(true);
                 end;
             }
 
@@ -146,8 +162,10 @@ page 50111 "Auto Rent Header Card"
                 trigger OnAction()
                 var
                     CarReturnMgmt: Codeunit "Car Return Management";
+                    ItemTransferMngmt: Codeunit ItemTransferManagement;
                 begin
-                    CarReturnMgmt.ReturnCar(Rec);
+                    ItemTransferMngmt.ReturnItemsFromAutoWarehouse(Rec);
+                    // CarReturnMgmt.ReturnCar(Rec);
                 end;
             }
             action("Auto Damage")
@@ -187,15 +205,5 @@ page 50111 "Auto Rent Header Card"
         }
     }
 
-    trigger OnOpenPage()
-    begin
-        if Rec.Status = Rec.Status::Issued then
-            CurrPage.Editable(false)
-        else
-            IsEditable := true;
-    end;
 
-    var
-        IsEditable: Boolean;
-        cust: Record Customer;
 }
