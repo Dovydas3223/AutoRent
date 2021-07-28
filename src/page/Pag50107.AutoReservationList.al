@@ -21,6 +21,7 @@ page 50107 "Auto Reservation List"
                 field("Line No."; Rec."Line No.")
                 {
                     ApplicationArea = All;
+                    Visible = false;
                 }
                 field("Client No."; Rec."Client No.")
                 {
