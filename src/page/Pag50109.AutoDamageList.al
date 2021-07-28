@@ -5,6 +5,8 @@ page 50109 "Auto Damage List"
     ApplicationArea = All;
     UsageCategory = Lists;
     SourceTable = "Auto Damage";
+    InsertAllowed = false;
+    DeleteAllowed = false;
 
     layout
     {
