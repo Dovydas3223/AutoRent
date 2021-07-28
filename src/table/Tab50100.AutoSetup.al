@@ -8,6 +8,7 @@ table 50100 "Auto Setup"
         {
             DataClassification = CustomerContent;
             Caption = 'Primary Key';
+            NotBlank = true;
         }
         field(10; "Car Nos."; Code[20])
         {
@@ -19,10 +20,12 @@ table 50100 "Auto Setup"
             Caption = 'Rent Card Nos.';
             DataClassification = CustomerContent;
         }
-
-
-        //Unfinished
-        field(30; "Attachment"; Code[20])
+        field(30; "Item Reclass. Nos."; Code[20])
+        {
+            Caption = 'Rent Card Nos.';
+            DataClassification = CustomerContent;
+        }
+        field(40; "Attachment"; Code[20])
         {
             Caption = 'Attachment';
             DataClassification = CustomerContent;
@@ -60,10 +63,15 @@ table 50100 "Auto Setup"
         RentCardNosLbl: Label 'RENT CARD';
         RentCardNosDescriptionLbl: Label 'Rent Card Nos.';
         RentCardNosFirstNoLbl: Label 'REC00001';
+        ItemReclassNoLbl: Label 'AUTO ITEM';
+        ItemReclassNosDescriptionLbl: Label 'Auto Item Reclassification Nos.';
+        ItemReclassNosFirstNoLbl: Label 'IRE00001';
     begin
         if "Car Nos." = '' then
             "Car Nos." := AutoRentSetupManagement.NewNoSeries(CarNosLbl, CarNosDescriptionLbl, CarNosFirstNoLbl);
         if "Rent Card Nos." = '' then
             "Rent Card Nos." := AutoRentSetupManagement.NewNoSeries(RentCardNosLbl, RentCardNosDescriptionLbl, RentCardNosFirstNoLbl);
+        if "Item Reclass. Nos." = '' then
+            "Item Reclass. Nos." := AutoRentSetupManagement.NewNoSeries(ItemReclassNoLbl, ItemReclassNosDescriptionLbl, ItemReclassNosFirstNoLbl);
     end;
 }
