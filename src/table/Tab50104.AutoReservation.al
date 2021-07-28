@@ -10,6 +10,7 @@ table 50104 "Auto Reservation"
         {
             Caption = 'Auto No.';
             DataClassification = CustomerContent;
+            NotBlank = true;
             TableRelation = Auto;
         }
         field(2; "Line No."; Integer)
@@ -63,35 +64,28 @@ table 50104 "Auto Reservation"
     procedure IsDatetimeOverlaping(ReservationTime: DateTime)
     var
         AutoRes: Record "Auto Reservation";
-        StartDateErrorLbl: Label 'Reservation Time %1 is underlaping with reservation time %2 - %3.';
-        DateErrorLbl: Label 'Reservation Time %1 is overlaping with reservation time %2 - %3.';
+        DateErr: Label 'Reservation Time %1 is overlaping with reservation time %2 - %3.';
     begin
-        // if AutoRes.IsEmpty() then begin
-        //     exit;
-        // end;
+        if AutoRes.IsEmpty() then begin
+            exit;
+        end;
         AutoRes.SetRange("Auto No.", Rec."Auto No.");
         AutoRes.FindSet();
-        AutoRes.SetCurrentKey("Reservation Start");
-        if AutoRes.Get(ReservationTime) then
-            Error(StartDateErrorLbl, ReservationTime, AutoRes."Reservation Start", AutoRes."Reservation End");
         repeat begin
-            // if ((ReservationTime >= AutoRes."Reservation Start") and (ReservationTime <= AutoRes."Reservation End")) then
-            //     Error(StartDateErrorLbl, ReservationTime, AutoRes."Reservation Start", AutoRes."Reservation End");
+            if ((ReservationTime >= AutoRes."Reservation Start") and (ReservationTime <= AutoRes."Reservation End")) then
+                Error(DateErr, ReservationTime, AutoRes."Reservation Start", AutoRes."Reservation End");
             if (Rec."Reservation Start" <> 0DT) and (Rec."Reservation End" <> 0DT) then begin
                 if (Rec."Reservation Start" < AutoRes."Reservation Start") and (Rec."Reservation End" > AutoRes."Reservation End") then
-                    Error(DateErrorLbl, ReservationTime, AutoRes."Reservation Start", AutoRes."Reservation End");
+                    Error(DateErr, ReservationTime, AutoRes."Reservation Start", AutoRes."Reservation End");
             end;
         end until AutoRes.Next() = 0;
     end;
 
     procedure checkDate()
     var
-        ReservationTimeErrorLbl: Label 'Reservation end %1 can not be before reservation start %2.';
+        ReservationTimeErr: Label 'Reservation end %1 can not be before reservation start %2.';
     begin
         if "Reservation End" < "Reservation Start" then
-            Error(ReservationTimeErrorLbl, "Reservation End", "Reservation Start");
-
-        Message(Format(("Reservation End" - "Reservation Start") > 010000));
-
+            Error(ReservationTimeErr, "Reservation End", "Reservation Start");
     end;
 }
