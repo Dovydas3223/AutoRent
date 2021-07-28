@@ -9,6 +9,7 @@ table 50106 "Auto Rent Header"
         {
             Caption = 'No.';
             DataClassification = CustomerContent;
+            NotBlank = true;
             Editable = false;
         }
         field(10; "Client No."; Code[20])
@@ -23,18 +24,19 @@ table 50106 "Auto Rent Header"
                 ClientIsBlockedErrorLbl: Label 'Client No. %1 is blocked';
             begin
                 if Rec."Client No." <> xRec."Client No." then begin
+                    Rec."Reserved From" := 0DT;
+                    Rec."Reserved To" := 0DT;
                     if IsClientInDebt() then
                         Error(ClientInDebtErrorLbl, Rec."Client No.");
                     if IsClientBlocked() then
                         Error(ClientIsBlockedErrorLbl, Rec."Client No.");
                 end;
-
             end;
         }
         field(11; "Driver License"; Media)
         {
             Caption = 'Driver License';
-            ExtendedDatatype = Person;
+            ExtendedDatatype = None;
             DataClassification = CustomerContent;
         }
         field(20; "Date"; Date)
@@ -55,6 +57,7 @@ table 50106 "Auto Rent Header"
             trigger OnValidate()
             begin
                 IsReservationStartValid();
+                CalculateQuantity();
             end;
         }
         field(41; "Reserved To"; DateTime)
@@ -64,6 +67,7 @@ table 50106 "Auto Rent Header"
             trigger OnValidate()
             begin
                 IsReservationEndValid();
+                CalculateQuantity();
             end;
         }
         field(50; "Price"; Decimal)
@@ -74,7 +78,7 @@ table 50106 "Auto Rent Header"
             CalcFormula = sum("Auto Rent Line"."Final price" where("No." = field("No.")));
             trigger OnValidate()
             begin
-                Price := CalculatePrice();
+                CalculatePrice();
             end;
         }
         field(60; Status; Enum "Auto Rent Status")
@@ -97,10 +101,45 @@ table 50106 "Auto Rent Header"
     begin
         if "No." = '' then
             "No." := GetAutoNoFromNoSeries();
+        if "Date" = 0D then
+            "Date" := WorkDate();
     end;
 
+    procedure CalculateQuantity()
+    var
+        Line: Record "Auto Rent Line";
+        Dur: Duration;
+    begin
+        Line.SetRange("No.", Rec."No.");
+        if Line.FindFirst() then begin
+            Dur := (Rec."Reserved To" - Rec."Reserved From");
+            Line.Quantity := ROUND((Dur / 86400000), 1, '>');
+            Line.CalculateFinalPrice();
+            Line.Modify(true);
+            Rec.CalculatePrice();
+        end;
+    end;
 
-    procedure CalculatePrice(): Decimal
+    procedure OpenReservationlist()
+    var
+        AutoReservation: record "Auto Reservation";
+        NoReservationLbl: Label 'There is no reservation for auto %1 and client %2.';
+    begin
+        AutoReservation.SetRange("Auto No.", Rec."Auto No.");
+        AutoReservation.SetRange("Client No.", Rec."Client No.");
+        AutoReservation.Ascending(true);
+
+        if not AutoReservation.IsEmpty() then begin
+            if Page.RunModal(Page::"Auto Reservation List", AutoReservation) = Action::LookupOK then begin
+                "Reserved From" := AutoReservation."Reservation Start";
+                "Reserved To" := AutoReservation."Reservation End";
+            end;
+        end else begin
+            Message(NoReservationLbl, "Auto No.", "Client No.");
+        end;
+    end;
+
+    procedure CalculatePrice()
     var
         AutoRentLine: Record "Auto Rent Line";
         "Sum": Decimal;
@@ -110,7 +149,7 @@ table 50106 "Auto Rent Header"
             repeat begin
                 "Sum" += AutoRentLine."Final price";
             end until AutoRentLine.Next() = 0;
-        exit("Sum");
+        Rec.Price := "Sum";
     end;
 
     procedure GetAutoNoFromNoSeries(): Code[20]
@@ -153,9 +192,10 @@ table 50106 "Auto Rent Header"
         NoValidReservationErr: Label 'There is no valid reservation for this Auto %1 and Client %2';
     begin
         AutoReservation.SetRange("Reservation Start", Rec."Reserved From");
+        AutoReservation.SetRange("Auto No.", Rec."Auto No.");
+        AutoReservation.SetRange("Client No.", Rec."Client No.");
         if AutoReservation.FindFirst() then
-            if (AutoReservation."Auto No." <> Rec."Auto No.") OR (AutoReservation."Client No." <> Rec."Client No.") then
-                Error(NoValidReservationErr, Rec."Auto No.", Rec."Client No.");
+            Error(NoValidReservationErr, Rec."Auto No.", Rec."Client No.");
     end;
 
     procedure IsReservationEndValid()
@@ -165,7 +205,7 @@ table 50106 "Auto Rent Header"
     begin
         AutoReservation.SetRange("Reservation End", Rec."Reserved To");
         if AutoReservation.FindFirst() then
-            if (AutoReservation."Auto No." <> Rec."Auto No.") OR (AutoReservation."Client No." <> Rec."Client No.") then
+            if not (AutoReservation."Auto No." = Rec."Auto No.") AND not (AutoReservation."Client No." = Rec."Client No.") then
                 Error(NoValidReservationErr, Rec."Auto No.", Rec."Client No.");
     end;
 
