@@ -2,8 +2,7 @@ page 50108 "Valid reservation"
 {
     Caption = 'Valid reservations list';
     PageType = List;
-    ApplicationArea = All;
-    UsageCategory = Lists;
+    UsageCategory = None;
     SourceTable = "Auto Reservation";
     Editable = false;
 
