@@ -9,6 +9,7 @@ table 50108 "Auto Rent Damage"
         field(1; "No."; Code[20])
         {
             Caption = 'No.';
+            NotBlank = true;
             DataClassification = CustomerContent;
         }
         field(2; "Line No."; Integer)
