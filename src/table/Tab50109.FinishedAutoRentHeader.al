@@ -11,6 +11,7 @@ table 50109 "Finished Auto Rent Header"
         {
             Caption = 'No.';
             DataClassification = CustomerContent;
+            NotBlank = true;
         }
         field(10; "Client No."; Code[20])
         {
