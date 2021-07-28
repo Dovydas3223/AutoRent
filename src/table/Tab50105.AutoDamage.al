@@ -10,6 +10,7 @@ table 50105 "Auto Damage"
         {
             Caption = 'Auto No.';
             DataClassification = CustomerContent;
+            NotBlank = true;
             TableRelation = Auto;
             Editable = false;
         }
