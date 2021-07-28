@@ -6,12 +6,14 @@ page 50111 "Auto Rent Header Card"
     SourceTable = "Auto Rent Header";
     PromotedActionCategories = 'New,Process,Report,Manage,Contract Status,Return Car';
 
+
     layout
     {
         area(Content)
         {
             group(General)
             {
+                Editable = Rec.Status = Rec.Status::Open;
                 field("No."; Rec."No.")
                 {
                     ApplicationArea = All;
