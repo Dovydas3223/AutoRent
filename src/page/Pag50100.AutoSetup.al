@@ -9,13 +9,17 @@ page 50100 "Auto Setup"
     {
         area(Content)
         {
-            group(GroupName)
+            group(General)
             {
                 field("Car Nos."; Rec."Car Nos.")
                 {
                     ApplicationArea = All;
                 }
                 field("Rent Card Nos."; Rec."Rent Card Nos.")
+                {
+                    ApplicationArea = All;
+                }
+                field("Item Reclass. Nos."; Rec."Item Reclass. Nos.")
                 {
                     ApplicationArea = All;
                 }
