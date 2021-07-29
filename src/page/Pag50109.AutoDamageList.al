@@ -41,23 +41,20 @@ page 50109 "Auto Damage List"
 
                     trigger OnValidate()
                     begin
-                        StyleExprTxt := Rec.ChangeStatusColor(Rec);
+                        StyleExprTxt := FieldColorMngmt.ChangeStatusColor(Format(Rec.Status));
                     end;
                 }
 
             }
         }
     }
+
     trigger OnAfterGetRecord()
     begin
-        StyleExprTxt := Rec.ChangeStatusColor(Rec);
-    end;
-
-    trigger OnNewRecord(BelowxRec: Boolean)
-    begin
-        StyleExprTxt := 'ambiguous';
+        StyleExprTxt := FieldColorMngmt.ChangeStatusColor(Format(Rec.Status));
     end;
 
     var
+        FieldColorMngmt: Codeunit "Field Color Management";
         StyleExprTxt: Text[20];
 }
