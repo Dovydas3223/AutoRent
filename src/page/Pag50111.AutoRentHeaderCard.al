@@ -61,24 +61,19 @@ page 50111 "Auto Rent Header Card"
                     trigger OnAssistEdit()
                     begin
                         Rec.OpenReservationlist();
-
-                    end;
-
-                    trigger OnValidate()
-                    begin
-
+                        Rec.CalculateQuantity();
                     end;
                 }
                 field("Reserved To"; Rec."Reserved To")
                 {
                     ApplicationArea = All;
-
                     ToolTip = 'Valid reservation end.';
                 }
                 field("Price"; Rec."Price")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Auto rent price.';
+
                     trigger OnValidate()
                     begin
                         CurrPage.Update(true);
@@ -87,6 +82,7 @@ page 50111 "Auto Rent Header Card"
                 field("Status"; Rec."Status")
                 {
                     ApplicationArea = All;
+                    StyleExpr = StyleExprTxt;
                     ToolTip = 'Auto rent document status.';
                 }
 
@@ -106,7 +102,7 @@ page 50111 "Auto Rent Header Card"
             {
                 ApplicationArea = all;
                 SubPageLink = "No." = FIELD("No.");
-                Editable = Rec."Auto No." <> '';
+                Editable = (Rec."Auto No." <> '') OR (Rec."Auto No." <> '');
                 Enabled = Rec."Auto No." <> '';
             }
         }
@@ -165,9 +161,14 @@ page 50111 "Auto Rent Header Card"
                 var
                     CarReturnMgmt: Codeunit "Car Return Management";
                     ItemTransferMngmt: Codeunit ItemTransferManagement;
+
+                    AutoDamageConfirmLbl: Label 'Is auto rent damage filled in?';
                 begin
-                    ItemTransferMngmt.ReturnItemsFromAutoWarehouse(Rec);
-                    // CarReturnMgmt.ReturnCar(Rec);
+                    if Confirm(AutoDamageConfirmLbl) then begin
+                        ItemTransferMngmt.ReturnItemsFromAutoWarehouse(Rec);
+                        CarReturnMgmt.ReturnCar(Rec);
+                    end;
+
                 end;
             }
             action("Auto Damage")
@@ -207,5 +208,13 @@ page 50111 "Auto Rent Header Card"
         }
     }
 
+    trigger OnAfterGetRecord()
+    begin
+        StyleExprTxt := FieldColorMngmt.ChangeStatusColor(Format(Rec.Status));
+    end;
+
+    var
+        FieldColorMngmt: Codeunit "Field Color Management";
+        StyleExprTxt: Text[20];
 
 }
