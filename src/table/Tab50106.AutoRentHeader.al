@@ -49,15 +49,26 @@ table 50106 "Auto Rent Header"
             Caption = 'Auto No.';
             DataClassification = CustomerContent;
             TableRelation = Auto;
+
+            trigger OnValidate()
+            begin
+                if Rec."Auto No." <> xRec."Auto No." then begin
+                    Rec."Reserved From" := 0DT;
+                    Rec."Reserved To" := 0DT;
+                end;
+            end;
         }
         field(40; "Reserved From"; DateTime)
         {
             Caption = 'Reserved From';
             DataClassification = CustomerContent;
+
             trigger OnValidate()
             begin
-                IsReservationStartValid();
-                CalculateQuantity();
+                if "Reserved To" <> 0DT then begin
+                    IsReservationDateValid();
+                    CalculateQuantity();
+                end;
             end;
         }
         field(41; "Reserved To"; DateTime)
@@ -66,8 +77,10 @@ table 50106 "Auto Rent Header"
             DataClassification = CustomerContent;
             trigger OnValidate()
             begin
-                IsReservationEndValid();
-                CalculateQuantity();
+                if "Reserved To" <> 0DT then begin
+                    IsReservationDateValid();
+                    CalculateQuantity();
+                end;
             end;
         }
         field(50; "Price"; Decimal)
@@ -186,27 +199,17 @@ table 50106 "Auto Rent Header"
             exit(Customer.IsBlocked());
     end;
 
-    procedure IsReservationStartValid()
+    procedure IsReservationDateValid()
     var
-        AutoReservation: Record "Auto Reservation";
-        NoValidReservationErr: Label 'There is no valid reservation for this Auto %1 and Client %2';
+        AutoReserv: Record "Auto Reservation";
+        NoValidReservErr: Label 'There is no valid reservation for this Auto %1 and Client %2';
     begin
-        AutoReservation.SetRange("Reservation Start", Rec."Reserved From");
-        AutoReservation.SetRange("Auto No.", Rec."Auto No.");
-        AutoReservation.SetRange("Client No.", Rec."Client No.");
-        if AutoReservation.FindFirst() then
-            Error(NoValidReservationErr, Rec."Auto No.", Rec."Client No.");
-    end;
-
-    procedure IsReservationEndValid()
-    var
-        AutoReservation: Record "Auto Reservation";
-        NoValidReservationErr: Label 'There is no valid reservation for this Auto %1 and Client %2';
-    begin
-        AutoReservation.SetRange("Reservation End", Rec."Reserved To");
-        if AutoReservation.FindFirst() then
-            if not (AutoReservation."Auto No." = Rec."Auto No.") AND not (AutoReservation."Client No." = Rec."Client No.") then
-                Error(NoValidReservationErr, Rec."Auto No.", Rec."Client No.");
+        AutoReserv.SetRange("Reservation Start", Rec."Reserved From");
+        AutoReserv.SetRange("Reservation End", Rec."Reserved To");
+        AutoReserv.SetRange("Auto No.", Rec."Auto No.");
+        AutoReserv.SetRange("Client No.", Rec."Client No.");
+        if not AutoReserv.FindFirst() then
+            Error(NoValidReservErr, Rec."Auto No.", Rec."Client No.");
     end;
 
     procedure TestStatusOpen(): Boolean
