@@ -2,12 +2,14 @@ codeunit 50102 "Car Return Management"
 {
     procedure ReturnCar(var AutoContract: Record "Auto Rent Header")
     var
-        NewVersionCreatedLbl: Label 'Contract %1 was removed';
+        ReturnSuccessLbl: Label 'Auto %1 was successfully returned.';
     begin
         CreateFinishedContract(AutoContract);
         TransferAutoDamage(AutoContract);
+        RemoveAutoRentDamage(AutoContract);
+        RemoveAutoReservation(AutoContract);
         RemoveAutoRentContract(AutoContract);
-        Message(NewVersionCreatedLbl, AutoContract."No.");
+        Message(ReturnSuccessLbl, AutoContract."Auto No.");
     end;
 
     procedure CreateFinishedContract(var AutoContract: Record "Auto Rent Header")
@@ -75,4 +77,21 @@ codeunit 50102 "Car Return Management"
         AutoContract.Delete();
     end;
 
+    procedure RemoveAutoReservation(var AutoContract: Record "Auto Rent Header")
+    AutoReservation: Record "Auto Reservation";
+    begin
+        AutoReservation.SetRange("Reservation Start", AutoContract."Reserved From");
+        AutoReservation.SetRange("Auto No.", AutoContract."Auto No.");
+        if AutoReservation.FindFirst() then
+            AutoReservation.Delete();
+    end;
+
+    procedure RemoveAutoRentDamage(AutoContract: Record "Auto Rent Header")
+    var
+        AutoRentDamage: Record "Auto Rent Damage";
+    begin
+        AutoRentDamage.SetRange("No.", AutoContract."No.");
+        if AutoRentDamage.FindSet() then
+            AutoRentDamage.DeleteAll();
+    end;
 }
