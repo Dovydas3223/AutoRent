@@ -35,7 +35,14 @@ report 50100 "Auto Rental Card"
             {
                 IncludeCaption = true;
             }
-            column(TotalAmount; TotalServiceAmount)
+            column(RentAmount; RentAmount)
+            {
+            }
+            column(TotalServiceAmount; TotalServiceAmount)
+            {
+            }
+
+            column(TotalRentAndServiceAmount; TotalRentAndServiceAmount)
             {
             }
             dataitem(AutoRentLine; "Auto Rent Line")
@@ -114,7 +121,10 @@ report 50100 "Auto Rental Card"
     Labels
     {
         ReportOfAutoRentCardLbl = 'Auto Rent Card Report';
-        Total_Caption = 'Total';
+        Total_Caption = 'Service Amount';
+
+        Rent_Amount_Caption = 'Auto Rent Amount';
+        Rent_Service_Amount_Caption = 'Rent And Service Amount';
     }
 
     var
