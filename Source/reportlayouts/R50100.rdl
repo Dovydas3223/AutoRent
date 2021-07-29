@@ -1055,8 +1055,128 @@
               <PaddingTop>2pt</PaddingTop>
             </Style>
           </Textbox>
+          <Textbox Name="Rent_Amount_Caption">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!Rent_Amount_Caption.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Rent_Amount_Caption</rd:DefaultName>
+            <Top>10.38295cm</Top>
+            <Left>12.23451cm</Left>
+            <Height>0.70583cm</Height>
+            <Width>3.52778cm</Width>
+            <ZIndex>15</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Rent_Service_Amount_Caption">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!Rent_Service_Amount_Caption.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Rent_Service_Amount_Caption</rd:DefaultName>
+            <Top>11.26517cm</Top>
+            <Left>12.23451cm</Left>
+            <Height>0.79375cm</Height>
+            <Width>3.52778cm</Width>
+            <ZIndex>16</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="RentAmount">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!RentAmount.Value, "DataSet_Result")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>RentAmount</rd:DefaultName>
+            <Top>10.38295cm</Top>
+            <Left>16.29347cm</Left>
+            <Height>0.70583cm</Height>
+            <Width>3.52778cm</Width>
+            <ZIndex>17</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="TotalRentAndServiceAmount">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!TotalRentAndServiceAmount.Value, "DataSet_Result")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>TotalRentAndServiceAmount</rd:DefaultName>
+            <Top>11.26517cm</Top>
+            <Left>16.29347cm</Left>
+            <Height>0.79375cm</Height>
+            <Width>3.52769cm</Width>
+            <ZIndex>18</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
-        <Height>11.73479cm</Height>
+        <Height>12.47562cm</Height>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1235,6 +1355,24 @@
       </DefaultValue>
       <Prompt>Total_Caption</Prompt>
     </ReportParameter>
+    <ReportParameter Name="Rent_Amount_Caption">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>Rent_Amount_Caption</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Rent_Amount_Caption</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Rent_Service_Amount_Caption">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>Rent_Service_Amount_Caption</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Rent_Service_Amount_Caption</Prompt>
+    </ReportParameter>
     <ReportParameter Name="No_Caption">
       <DataType>String</DataType>
       <DefaultValue>
@@ -1374,7 +1512,7 @@
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>1</NumberOfColumns>
-      <NumberOfRows>17</NumberOfRows>
+      <NumberOfRows>19</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
@@ -1389,76 +1527,86 @@
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>2</RowIndex>
-          <ParameterName>No_Caption</ParameterName>
+          <ParameterName>Rent_Amount_Caption</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>3</RowIndex>
-          <ParameterName>AutoNo_AutoRentHeaderCaption</ParameterName>
+          <ParameterName>Rent_Service_Amount_Caption</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>4</RowIndex>
-          <ParameterName>ClientNo_AutoRentHeaderCaption</ParameterName>
+          <ParameterName>No_Caption</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>5</RowIndex>
-          <ParameterName>Price_AutoRentHeaderCaption</ParameterName>
+          <ParameterName>AutoNo_AutoRentHeaderCaption</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>6</RowIndex>
-          <ParameterName>ReservedFrom_AutoRentHeaderCaption</ParameterName>
+          <ParameterName>ClientNo_AutoRentHeaderCaption</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>7</RowIndex>
-          <ParameterName>ReservedTo_AutoRentHeaderCaption</ParameterName>
+          <ParameterName>Price_AutoRentHeaderCaption</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>8</RowIndex>
-          <ParameterName>TypeCaption</ParameterName>
+          <ParameterName>ReservedFrom_AutoRentHeaderCaption</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>9</RowIndex>
-          <ParameterName>Type_No_Caption</ParameterName>
+          <ParameterName>ReservedTo_AutoRentHeaderCaption</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>10</RowIndex>
-          <ParameterName>Type_DescriptionCaption</ParameterName>
+          <ParameterName>TypeCaption</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>11</RowIndex>
-          <ParameterName>UnitCaption</ParameterName>
+          <ParameterName>Type_No_Caption</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>12</RowIndex>
-          <ParameterName>QuantityCaption</ParameterName>
+          <ParameterName>Type_DescriptionCaption</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>13</RowIndex>
-          <ParameterName>Unit_priceCaption</ParameterName>
+          <ParameterName>UnitCaption</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>14</RowIndex>
-          <ParameterName>Final_priceCaption</ParameterName>
+          <ParameterName>QuantityCaption</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>15</RowIndex>
-          <ParameterName>MarkCaption</ParameterName>
+          <ParameterName>Unit_priceCaption</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>16</RowIndex>
+          <ParameterName>Final_priceCaption</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>17</RowIndex>
+          <ParameterName>MarkCaption</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>18</RowIndex>
           <ParameterName>ModelCaption</ParameterName>
         </CellDefinition>
       </CellDefinitions>
@@ -1527,11 +1675,23 @@ End Function
         <Field Name="ReservedTo_AutoRentHeader">
           <DataField>ReservedTo_AutoRentHeader</DataField>
         </Field>
-        <Field Name="TotalAmount">
-          <DataField>TotalAmount</DataField>
+        <Field Name="RentAmount">
+          <DataField>RentAmount</DataField>
         </Field>
-        <Field Name="TotalAmountFormat">
-          <DataField>TotalAmountFormat</DataField>
+        <Field Name="RentAmountFormat">
+          <DataField>RentAmountFormat</DataField>
+        </Field>
+        <Field Name="TotalServiceAmount">
+          <DataField>TotalServiceAmount</DataField>
+        </Field>
+        <Field Name="TotalServiceAmountFormat">
+          <DataField>TotalServiceAmountFormat</DataField>
+        </Field>
+        <Field Name="TotalRentAndServiceAmount">
+          <DataField>TotalRentAndServiceAmount</DataField>
+        </Field>
+        <Field Name="TotalRentAndServiceAmountFormat">
+          <DataField>TotalRentAndServiceAmountFormat</DataField>
         </Field>
         <Field Name="Type">
           <DataField>Type</DataField>
