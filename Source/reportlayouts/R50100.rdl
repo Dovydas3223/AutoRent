@@ -80,39 +80,6 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="Textbox16">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Parameters!ClientNo_AutoRentHeaderCaption.Value</Value>
-                    <Style>
-                      <FontFamily>Times New Roman</FontFamily>
-                      <FontSize>12pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox14</rd:DefaultName>
-            <Top>2.39861cm</Top>
-            <Left>1.22223cm</Left>
-            <Height>0.79375cm</Height>
-            <Width>3.52778cm</Width>
-            <ZIndex>2</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
           <Textbox Name="Textbox18">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
@@ -135,7 +102,7 @@
             <Left>1.22223cm</Left>
             <Height>0.79375cm</Height>
             <Width>3.52778cm</Width>
-            <ZIndex>3</ZIndex>
+            <ZIndex>2</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -170,7 +137,7 @@
             <Left>14.41493cm</Left>
             <Height>0.79375cm</Height>
             <Width>5.40632cm</Width>
-            <ZIndex>4</ZIndex>
+            <ZIndex>3</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -205,42 +172,7 @@
             <Left>14.41493cm</Left>
             <Height>0.79375cm</Height>
             <Width>5.40632cm</Width>
-            <ZIndex>5</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox21">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!ClientNo_AutoRentHeader.Value, "DataSet_Result")</Value>
-                    <Style>
-                      <FontFamily>Times New Roman</FontFamily>
-                      <FontSize>12pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Right</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox14</rd:DefaultName>
-            <Top>2.39861cm</Top>
-            <Left>14.41493cm</Left>
-            <Height>0.79375cm</Height>
-            <Width>5.40632cm</Width>
-            <ZIndex>6</ZIndex>
+            <ZIndex>4</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -275,7 +207,7 @@
             <Left>14.41493cm</Left>
             <Height>0.79375cm</Height>
             <Width>5.40632cm</Width>
-            <ZIndex>7</ZIndex>
+            <ZIndex>5</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -310,7 +242,7 @@
             <Left>14.41493cm</Left>
             <Height>0.79375cm</Height>
             <Width>5.40632cm</Width>
-            <ZIndex>8</ZIndex>
+            <ZIndex>6</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -343,7 +275,7 @@
             <Left>1.22223cm</Left>
             <Height>0.79375cm</Height>
             <Width>3.52778cm</Width>
-            <ZIndex>9</ZIndex>
+            <ZIndex>7</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -909,7 +841,7 @@
             <Left>1.22232cm</Left>
             <Height>1.48167cm</Height>
             <Width>18.59893cm</Width>
-            <ZIndex>10</ZIndex>
+            <ZIndex>8</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -938,7 +870,7 @@
             <Left>1.2222cm</Left>
             <Height>0.79375cm</Height>
             <Width>3.52778cm</Width>
-            <ZIndex>11</ZIndex>
+            <ZIndex>9</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -973,7 +905,7 @@
             <Left>14.41493cm</Left>
             <Height>0.79375cm</Height>
             <Width>5.40629cm</Width>
-            <ZIndex>12</ZIndex>
+            <ZIndex>10</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -991,7 +923,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Parameters!Total_Caption.Value</Value>
+                    <Value>=Parameters!Total_Service_Caption.Value</Value>
                     <Style>
                       <FontFamily>Times New Roman</FontFamily>
                       <FontSize>12pt</FontSize>
@@ -1002,11 +934,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox14</rd:DefaultName>
-            <Top>9.41281cm</Top>
-            <Left>12.23451cm</Left>
+            <Top>10.29503cm</Top>
+            <Left>12.91753cm</Left>
             <Height>0.79375cm</Height>
             <Width>3.52778cm</Width>
-            <ZIndex>13</ZIndex>
+            <ZIndex>11</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1016,43 +948,6 @@
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
               <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox32">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Fields!TotalAmount.Value</Value>
-                    <Style>
-                      <FontFamily>Times New Roman</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox14</rd:DefaultName>
-            <Top>9.41281cm</Top>
-            <Left>16.29347cm</Left>
-            <Height>0.79375cm</Height>
-            <Width>3.52778cm</Width>
-            <ZIndex>14</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <BottomBorder>
-                <Style>Solid</Style>
-              </BottomBorder>
-              <VerticalAlign>Bottom</VerticalAlign>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
             </Style>
           </Textbox>
           <Textbox Name="Rent_Amount_Caption">
@@ -1070,11 +965,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Rent_Amount_Caption</rd:DefaultName>
-            <Top>10.38295cm</Top>
-            <Left>12.23451cm</Left>
+            <Top>9.41281cm</Top>
+            <Left>12.91753cm</Left>
             <Height>0.70583cm</Height>
             <Width>3.52778cm</Width>
-            <ZIndex>15</ZIndex>
+            <ZIndex>12</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1101,10 +996,10 @@
             </Paragraphs>
             <rd:DefaultName>Rent_Service_Amount_Caption</rd:DefaultName>
             <Top>11.26517cm</Top>
-            <Left>12.23451cm</Left>
+            <Left>12.91753cm</Left>
             <Height>0.79375cm</Height>
             <Width>3.52778cm</Width>
-            <ZIndex>16</ZIndex>
+            <ZIndex>13</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1130,11 +1025,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>RentAmount</rd:DefaultName>
-            <Top>10.38295cm</Top>
-            <Left>16.29347cm</Left>
+            <Top>9.41281cm</Top>
+            <Left>16.97649cm</Left>
             <Height>0.70583cm</Height>
             <Width>3.52778cm</Width>
-            <ZIndex>17</ZIndex>
+            <ZIndex>14</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1161,10 +1056,178 @@
             </Paragraphs>
             <rd:DefaultName>TotalRentAndServiceAmount</rd:DefaultName>
             <Top>11.26517cm</Top>
-            <Left>16.29347cm</Left>
+            <Left>16.97649cm</Left>
             <Height>0.79375cm</Height>
             <Width>3.52769cm</Width>
+            <ZIndex>15</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Mark">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Mark.Value, "DataSet_Result")</Value>
+                    <Style>
+                      <FontFamily>Times New Roman</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Mark</rd:DefaultName>
+            <Top>2.40771cm</Top>
+            <Left>14.41493cm</Left>
+            <Height>0.79375cm</Height>
+            <Width>5.40623cm</Width>
+            <ZIndex>16</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Model">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Model.Value, "DataSet_Result")</Value>
+                    <Style>
+                      <FontFamily>Times New Roman</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Model</rd:DefaultName>
+            <Top>3.34257cm</Top>
+            <Left>14.41493cm</Left>
+            <Height>0.79375cm</Height>
+            <Width>5.43269cm</Width>
+            <ZIndex>17</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox16">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!MarkCaption.Value</Value>
+                    <Style>
+                      <FontFamily>Times New Roman</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox14</rd:DefaultName>
+            <Top>2.36334cm</Top>
+            <Left>1.22232cm</Left>
+            <Height>0.79375cm</Height>
+            <Width>3.52778cm</Width>
             <ZIndex>18</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox17">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!ModelCaption.Value</Value>
+                    <Style>
+                      <FontFamily>Times New Roman</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox14</rd:DefaultName>
+            <Top>3.34257cm</Top>
+            <Left>1.22232cm</Left>
+            <Height>0.79375cm</Height>
+            <Width>3.52778cm</Width>
+            <ZIndex>19</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="RentAmount2">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!TotalServiceAmount.Value, "DataSet_Result")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>RentAmount</rd:DefaultName>
+            <Top>10.29503cm</Top>
+            <Left>16.9764cm</Left>
+            <Height>0.70583cm</Height>
+            <Width>3.52778cm</Width>
+            <ZIndex>20</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1346,14 +1409,14 @@
       </DefaultValue>
       <Prompt>ReportOfAutoRentCardLbl</Prompt>
     </ReportParameter>
-    <ReportParameter Name="Total_Caption">
+    <ReportParameter Name="Total_Service_Caption">
       <DataType>String</DataType>
       <DefaultValue>
         <Values>
-          <Value>Total_Caption</Value>
+          <Value>Total_Service_Caption</Value>
         </Values>
       </DefaultValue>
-      <Prompt>Total_Caption</Prompt>
+      <Prompt>Total_Service_Caption</Prompt>
     </ReportParameter>
     <ReportParameter Name="Rent_Amount_Caption">
       <DataType>String</DataType>
@@ -1522,7 +1585,7 @@
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>1</RowIndex>
-          <ParameterName>Total_Caption</ParameterName>
+          <ParameterName>Total_Service_Caption</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>

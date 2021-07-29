@@ -89,6 +89,7 @@ report 50100 "Auto Rental Card"
             }
             dataitem(Auto; Auto)
             {
+                DataItemLink = "No." = field("Auto No.");
                 column(Mark; Mark)
                 {
                     IncludeCaption = true;
@@ -97,6 +98,8 @@ report 50100 "Auto Rental Card"
                 {
                     IncludeCaption = true;
                 }
+
+
             }
 
 
@@ -121,7 +124,7 @@ report 50100 "Auto Rental Card"
     Labels
     {
         ReportOfAutoRentCardLbl = 'Auto Rent Card Report';
-        Total_Caption = 'Service Amount';
+        Total_Service_Caption = 'Service Amount';
 
         Rent_Amount_Caption = 'Auto Rent Amount';
         Rent_Service_Amount_Caption = 'Rent And Service Amount';
