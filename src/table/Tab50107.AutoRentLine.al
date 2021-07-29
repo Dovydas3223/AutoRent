@@ -117,16 +117,16 @@ table 50107 "Auto Rent Line"
     procedure CheckItemQuantityInWarehouse()
     var
         Item: Record Item;
-        NoItemsInInventoryErr: Label 'Item % is not in stock. Available: %2';
-        NotEnoughItemsErr: Label 'There is not enough of Item %1 in the inventory';
+        NoItemsInInventoryErr: Label 'Item %1 is not in stock. Available: %2.';
+        NotEnoughItemsErr: Label 'Item %1 is out of stock.';
     begin
         if (not Item.IsEmpty()) and (Rec.Type = Rec.Type::Item) then begin
             Item.Get(Rec."Type No.");
             Item.CalcFields(Inventory);
             if Item.Inventory <= 0 then
-                Error(NoItemsInInventoryErr, Rec."Type No.");
+                Error(NotEnoughItemsErr, Rec."Type No.");
             if (Quantity <> 0) and (Item.Inventory < Quantity) then
-                Error(NotEnoughItemsErr, Rec."Type No.", Item.Inventory);
+                Error(NoItemsInInventoryErr, Rec."Type No.", Item.Inventory);
         end;
 
     end;
