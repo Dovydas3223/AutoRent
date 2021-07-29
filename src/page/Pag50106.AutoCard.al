@@ -96,9 +96,9 @@ page 50106 "Auto Card"
                 Promoted = true;
             }
 
-            action("Open Auto Damage List")
+            action("Auto Damage List")
             {
-                Caption = 'Open Auto Damage List';
+                Caption = 'Auto Damage List';
                 ApplicationArea = All;
                 Image = List;
 
