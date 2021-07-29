@@ -86,9 +86,9 @@ page 50105 "Auto List"
                 Image = CompleteLine;
                 Promoted = true;
             }
-            action("Open Auto Damage List")
+            action("Auto Damage List")
             {
-                Caption = 'Open Auto Damage List';
+                Caption = 'Auto Damage List';
                 ApplicationArea = All;
                 Image = List;
 
