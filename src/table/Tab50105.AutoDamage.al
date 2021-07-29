@@ -49,16 +49,5 @@ table 50105 "Auto Damage"
         }
     }
 
-    procedure ChangeStatusColor(Rec: Record "Auto Damage"): Text[20]
-    begin
-        case Rec.Status of
-            Rec.Status::Status:
-                exit('ambiguous');
-            Rec.Status::Relevant:
-                exit('unfavorable');
-            Rec.Status::Resolved:
-                exit('favorable');
-        end;
-    end;
 
 }
