@@ -51,6 +51,7 @@ page 50110 "Auto Rent Header"
                 field("Status"; Rec."Status")
                 {
                     ApplicationArea = All;
+                    StyleExpr = StyleExprTxt;
                     ToolTip = 'Auto rent document status.';
                 }
 
@@ -58,4 +59,13 @@ page 50110 "Auto Rent Header"
             }
         }
     }
+
+    trigger OnAfterGetRecord()
+    begin
+        StyleExprTxt := FieldColorMngmt.ChangeStatusColor(Format(Rec.Status));
+    end;
+
+    var
+        FieldColorMngmt: Codeunit "Field Color Management";
+        StyleExprTxt: Text[20];
 }
