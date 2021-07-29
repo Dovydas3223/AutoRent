@@ -12,7 +12,6 @@ codeunit 50103 "ItemTransferManagement"
 
         NoWarehouseLocationErr: Label 'No warehouse location selected.';
         NoAutoErr: Label 'No car selected.';
-        Text001: Label 'The journal lines were successfully posted.';
     begin
         AutoSetup.Get();
         if AutoSetup.Attachment = '' then
@@ -42,9 +41,6 @@ codeunit 50103 "ItemTransferManagement"
                 ItemJnlPostLine.RunWithCheck(ItemJournalLine);
 
             end until RentLine.Next() = 0;
-
-        Message('Last %1', ItemJournalLine.Count);
-        Message(Text001);
     end;
 
     procedure ReturnItemsFromAutoWarehouse(var RentHeader: Record "Auto Rent Header")
@@ -89,9 +85,6 @@ codeunit 50103 "ItemTransferManagement"
                 ItemJnlPostLine.RunWithCheck(ItemJournalLine);
 
             end until RentLine.Next() = 0;
-
-        Message('Last %1', ItemJournalLine.Count);
-        Message(Text001);
     end;
 
     local procedure GetDocumentNoFromNoSeries(): Code[20]
