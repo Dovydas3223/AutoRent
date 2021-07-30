@@ -42,9 +42,7 @@ table 50107 "Auto Rent Line"
                 if Rec."Type No." <> xRec."Type No." then begin
                     CheckItemQuantityInWarehouse();
                     ShowMainAutoServiceError();
-                    Rec.GetDescription();
-                    Rec.GetUnitOfMeasure();
-                    Rec.GetUnitPrice();
+                    GetUnitPriceDescriptionQuant()
                 end;
 
             end;
@@ -154,14 +152,11 @@ table 50107 "Auto Rent Line"
             Rec."Line No." := 10000;
             Rec."Type" := Rec."Type"::Resource;
             Rec."Type No." := Auto."Rent Service";
-            Rec.GetDescription();
-            Rec.Unit := 'DAY';
-            Rec.GetUnitPrice();
+            GetUnitPriceDescriptionQuant();
             Rec."Is First" := true;
             Rec.Insert();
         end;
     end;
-
 
     procedure CalculateFinalPrice()
     var
@@ -171,54 +166,38 @@ table 50107 "Auto Rent Line"
         Rec."Final price" := rec.Quantity * Rec."Unit price";
     end;
 
-    procedure GetUnitPrice()
+    //Gets Resource or Item unit of measure, unit price, description and default quantity.
+    procedure GetUnitPriceDescriptionQuant()
     var
         Item: Record Item;
         Resource: Record Resource;
     begin
-        if "Type" = "Type"::Item then begin
-            Item.Get("Type No.");
-            Rec."Unit Price" := Item."Unit Cost";
-            exit;
-        end;
-        if "Type" = "Type"::Resource then begin
-            Resource.Get("Type No.");
-            Rec."Unit Price" := Resource."Unit Price";
-            exit;
+        case "Type" of
+            Type::Item:
+                begin
+                    Item.Get("Type No.");
+                    Rec."Unit Price" := Item."Unit Cost";
+                    Rec."Unit" := Item."Base Unit of Measure";
+                    Rec."Type Description" := Item.Description;
+                end;
+            Type::Resource:
+                begin
+                    Resource.Get("Type No.");
+                    Rec."Unit Price" := Resource."Unit Price";
+                    Rec."Unit" := Resource."Base Unit of Measure";
+                    Rec."Type Description" := 'DAY';
+                    Rec.Quantity := GetMainServiceQuantity();
+                end;
         end;
     end;
 
-    procedure GetUnitOfMeasure()
+    procedure GetMainServiceQuantity(): Integer
     var
-        Item: Record Item;
-        Resource: Record Resource;
+        AutoRentLine: Record "Auto Rent Line";
     begin
-        if "Type" = "Type"::Item then begin
-            Item.Get("Type No.");
-            Rec."Unit" := Item."Base Unit of Measure";
-            exit;
-        end;
-        if "Type" = "Type"::Resource then begin
-            Resource.Get("Type No.");
-            Rec."Unit" := Resource."Base Unit of Measure";
-            exit;
-        end;
-    end;
-
-    procedure GetDescription()
-    var
-        Item: Record Item;
-        Resource: Record Resource;
-    begin
-        if "Type" = "Type"::Item then begin
-            Item.Get("Type No.");
-            Rec."Type Description" := Item.Description;
-            exit;
-        end;
-        if "Type" = "Type"::Resource then begin
-            Resource.Get("Type No.");
-            Rec."Type Description" := Resource.Name;
-            exit;
-        end;
+        AutoRentLine.SetRange("No.", Rec."No.");
+        AutoRentLine.Ascending(true);
+        if AutoRentLine.FindFirst() then
+            exit(AutoRentLine.Quantity);
     end;
 }
