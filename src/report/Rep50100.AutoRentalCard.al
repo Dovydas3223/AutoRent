@@ -8,6 +8,7 @@ report 50100 "Auto Rental Card"
 
     dataset
     {
+
         dataitem(AutoRentHeader; "Auto Rent Header")
         {
             RequestFilterFields = "No.";
@@ -35,20 +36,33 @@ report 50100 "Auto Rental Card"
             {
                 IncludeCaption = true;
             }
-            column(RentAmount; RentAmount)
+
+            column(TotalRentAndServiceAmount; TotalRentAndServiceAmount)
             {
             }
             column(TotalServiceAmount; TotalServiceAmount)
             {
             }
-
-            column(TotalRentAndServiceAmount; TotalRentAndServiceAmount)
+            column(RentAmount; RentAmount)
             {
             }
+            dataitem(Auto; Auto)
+            {
+                DataItemLink = "No." = field("Auto No.");
+                column(Mark_Auto; Mark)
+                {
+                    IncludeCaption = true;
+                }
+                column(Model_Auto; Model)
+                {
+                    IncludeCaption = true;
+                }
+            }
+
             dataitem(AutoRentLine; "Auto Rent Line")
             {
-                DataItemTableView = sorting("Line No.");
                 DataItemLink = "No." = field("No.");
+                DataItemTableView = sorting("Line No.");
 
                 column("Type"; "Type")
                 {
@@ -78,33 +92,13 @@ report 50100 "Auto Rental Card"
                 {
                     IncludeCaption = true;
                 }
-
-                trigger OnPreDataItem()
-                begin
-                    if AutoRentLine.FindSet() then
-                        repeat begin
-                            TotalServiceAmount += AutoRentLine."Final price";
-                        end until AutoRentLine.Next() = 0;
-                end;
-            }
-            dataitem(Auto; Auto)
-            {
-                DataItemLink = "No." = field("Auto No.");
-                column(Mark; Mark)
-                {
-                    IncludeCaption = true;
-                }
-                column(Model; Model)
-                {
-                    IncludeCaption = true;
-                }
-
-
             }
 
-
+            trigger OnAfterGetRecord()
+            begin
+                CalculateAmounts(AutoRentHeader);
+            end;
         }
-
     }
 
     requestpage
@@ -116,16 +110,17 @@ report 50100 "Auto Rental Card"
                 group(General)
                 {
                     Caption = 'Options';
+
                 }
             }
         }
     }
 
+
     Labels
     {
         ReportOfAutoRentCardLbl = 'Auto Rent Card Report';
-        Total_Service_Caption = 'Service Amount';
-
+        Total_Service_Caption = 'Total Service Amount';
         Rent_Amount_Caption = 'Auto Rent Amount';
         Rent_Service_Amount_Caption = 'Rent And Service Amount';
     }
@@ -135,5 +130,22 @@ report 50100 "Auto Rental Card"
         RentAmount: Decimal;
         TotalRentAndServiceAmount: Decimal;
 
+
+    procedure CalculateAmounts(var RentHeader: Record "Auto Rent Header")
+    var
+        RentLines: Record "Auto Rent Line";
+    begin
+        RentLines.SetRange("No.", RentHeader."No.");
+        if RentLines.FindSet() then
+            repeat begin
+                if RentLines."Is First" then begin
+                    RentAmount := RentLines.Quantity * RentLines."Unit price";
+                end;
+                if (RentLines.Type = RentLines.Type::Resource) and (not RentLines."Is First") then
+                    TotalServiceAmount += RentLines.Quantity * RentLines."Unit price";
+            end until RentLines.Next() = 0;
+        TotalRentAndServiceAmount := RentAmount + TotalServiceAmount;
+
+    end;
 
 }
