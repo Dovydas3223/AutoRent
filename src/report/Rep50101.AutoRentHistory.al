@@ -23,13 +23,12 @@ report 50101 "Auto Rent History"
             {
                 IncludeCaption = true;
             }
-
             column(TotalAutoRentAmount; TotalAutoRentAmount)
             {
             }
 
 
-            dataitem(AutoRentHeader; "Auto Rent Header")
+            dataitem(FinishedAutoRentHeader; "Finished Auto Rent Header")
             {
                 DataItemLink = "Auto No." = field("No.");
 
@@ -54,22 +53,18 @@ report 50101 "Auto Rent History"
                 var
                     Customer: Record Customer;
                 begin
-                    if Customer.Get(AutoRentHeader."Client No.") then
+                    if Customer.Get(FinishedAutoRentHeader."Client No.") then
                         ClientName := Customer.Name;
-                    LineAmount := CalculateHeaderAmount(AutoRentHeader);
-
-
-
+                    LineAmount := CalculateHeaderAmount(FinishedAutoRentHeader);
                 end;
 
                 trigger OnPreDataItem()
                 begin
-
-                    AutoRentHeader.SetFilter("Reserved From", '>=%1', StartDate);
-                    AutoRentHeader.SetFilter("Reserved To", '<=%1', EndDateReq);
-                    AutoRentHeader.SetCurrentKey("Reserved From");
-                    AutoRentHeader.SetAscending("Reserved From", true);
-                    TotalAutoRentAmount := CalculateTotalRentAmount(AutoRentHeader);
+                    FinishedAutoRentHeader.SetFilter("Reserved From", '>=%1', StartDate);
+                    FinishedAutoRentHeader.SetFilter("Reserved To", '<=%1', EndDateReq);
+                    FinishedAutoRentHeader.SetCurrentKey("Reserved From");
+                    FinishedAutoRentHeader.SetAscending("Reserved From", true);
+                    TotalAutoRentAmount := CalculateTotalRentAmount(FinishedAutoRentHeader);
                 end;
 
             }
@@ -100,15 +95,31 @@ report 50101 "Auto Rent History"
                         Caption = 'Ending Date';
                         ToolTip = 'Specifies the end date for the time interval for VAT statement lines in the report.';
                     }
+
                 }
+
             }
+
         }
 
+
     }
+
+
+
     labels
     {
+        ReportOfAutoHistoryLbl = 'Auto History';
         TotalAutoRentAmountLbl = 'Total Amount';
     }
+
+    trigger OnPreReport()
+    begin
+
+        if EndDateReq = 0DT then
+            EndDateReq := CreateDateTime(30001230D, 0T)
+    end;
+
     var
         ClientName: Text[100];
         LineAmount: Decimal;
@@ -117,26 +128,26 @@ report 50101 "Auto Rent History"
         StartDate: DateTime;
         EndDateReq: DateTime;
 
-    procedure CalculateHeaderAmount(var RentHeader: Record "Auto Rent Header"): Decimal
+    procedure CalculateHeaderAmount(var RentHeader: Record "Finished Auto Rent Header"): Decimal
     var
-        RentLine: Record "Auto Rent Line";
+        FinRentLine: Record "Finished Auto Rent Line";
         Amount: Decimal;
     begin
-        RentLine.SetRange("No.", RentHeader."No.");
-        if RentLine.FindSet() then
-            repeat begin
-                Amount += RentLine."Final price";
-            end until RentLine.Next() = 0;
+        FinRentLine.SetRange("No.", RentHeader."No.");
+        if FinRentLine.FindSet() then
+            repeat
+                Amount += FinRentLine.Quantity * FinRentLine."Unit price";
+            until FinRentLine.Next() = 0;
         exit(Amount);
     end;
 
-    procedure CalculateTotalRentAmount(var RentHeaders: Record "Auto Rent Header"): Decimal
+    procedure CalculateTotalRentAmount(var RentHeaders: Record "Finished Auto Rent Header"): Decimal
     var
         Amount: Decimal;
     begin
-        repeat begin
+        repeat
             Amount += CalculateHeaderAmount(RentHeaders);
-        end until RentHeaders.Next() = 0;
+        until RentHeaders.Next() = 0;
         exit(Amount);
     end;
 }
