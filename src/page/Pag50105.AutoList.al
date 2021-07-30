@@ -7,6 +7,8 @@ page 50105 "Auto List"
     SourceTable = Auto;
     InsertAllowed = false;
     ModifyAllowed = false;
+    PromotedActionCategories = 'New,Process,Report,Manage';
+
 
     layout
     {
@@ -74,23 +76,36 @@ page 50105 "Auto List"
         {
             action("Reserve Auto")
             {
-                RunObject = page "Auto Reservation List";
-                RunPageLink = "Auto No." = field("No.");
+                Caption = 'Reserve Auto';
+                ApplicationArea = All;
                 Image = LinesFromJob;
                 Promoted = true;
+                PromotedCategory = Category4;
+
+                RunObject = page "Auto Reservation List";
+                RunPageLink = "Auto No." = field("No.");
+
             }
+
             action("Valid Reservations")
             {
-                RunObject = page "Valid reservation";
-                RunPageLink = "Auto No." = field("No.");
+                Caption = 'Valid Reservations';
+                ApplicationArea = All;
                 Image = CompleteLine;
                 Promoted = true;
+                PromotedCategory = Category4;
+
+                RunObject = page "Valid reservation";
+                RunPageLink = "Auto No." = field("No.");
             }
+
             action("Auto Damage List")
             {
                 Caption = 'Auto Damage List';
                 ApplicationArea = All;
                 Image = List;
+                Promoted = true;
+                PromotedCategory = Category4;
 
                 trigger OnAction()
                 var
@@ -100,6 +115,22 @@ page 50105 "Auto List"
                     Page.RunModal(0, AutoDamage);
                 end;
             }
+
+            action("Print History")
+            {
+                Caption = 'Print History';
+                ApplicationArea = All;
+                Image = Print;
+                Promoted = true;
+                PromotedCategory = Report;
+
+                trigger OnAction()
+                begin
+                    Rec.SetRange("No.", Rec."No.");
+                    Report.RunModal(50101, true, true, Rec);
+                end;
+            }
         }
+
     }
 }
