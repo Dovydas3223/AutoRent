@@ -34,7 +34,7 @@ codeunit 50103 "ItemTransferManagement"
                 ItemJournalLine."Document Date" := WorkDate();
                 ItemJournalLine."Entry Type" := ItemJournalLine."Entry Type"::Transfer;
                 ItemJournalLine."Item No." := RentLine."Type No.";
-                // ItemJournalLine."Location Code" := AutoSetup.Attachment;
+                ItemJournalLine."Location Code" := AutoSetup.Attachment;
                 ItemJournalLine."New Location Code" := Auto."Location Code";
                 ItemJournalLine."Quantity (Base)" := RentLine.Quantity;
                 ItemJournalLine."Gen. Prod. Posting Group" := Item."Gen. Prod. Posting Group";
@@ -79,11 +79,10 @@ codeunit 50103 "ItemTransferManagement"
                 ItemJournalLine."Entry Type" := ItemJournalLine."Entry Type"::Transfer;
                 ItemJournalLine."Item No." := RentLine."Type No.";
                 ItemJournalLine."Location Code" := Auto."Location Code";
-                // ItemJournalLine."New Location Code" := AutoSetup.Attachment;
+                ItemJournalLine."New Location Code" := AutoSetup.Attachment;
                 ItemJournalLine."Quantity (Base)" := RentLine.Quantity;
                 ItemJournalLine."Gen. Prod. Posting Group" := Item."Gen. Prod. Posting Group";
                 ItemJnlPostLine.RunWithCheck(ItemJournalLine);
-
             end until RentLine.Next() = 0;
     end;
 
