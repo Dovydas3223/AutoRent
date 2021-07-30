@@ -46,7 +46,7 @@ table 50104 "Auto Reservation"
             begin
                 if Rec."Reservation End" <> xRec."Reservation End" then begin
                     Rec.IsDatetimeOverlaping(Rec."Reservation End");
-                    Rec.checkDate();
+                    Rec.checkDateOrder();
                 end;
             end;
         }
@@ -60,7 +60,7 @@ table 50104 "Auto Reservation"
         }
     }
 
-    //It works but needs more work
+    //Checking if reservation time is overlaping with other dates.
     procedure IsDatetimeOverlaping(ReservationTime: DateTime)
     var
         AutoRes: Record "Auto Reservation";
@@ -81,7 +81,8 @@ table 50104 "Auto Reservation"
         end until AutoRes.Next() = 0;
     end;
 
-    procedure checkDate()
+    //Cheking if Reservation Start is not after Reservation End.
+    procedure checkDateOrder()
     var
         ReservationTimeErr: Label 'Reservation end %1 can not be before reservation start %2.';
     begin
