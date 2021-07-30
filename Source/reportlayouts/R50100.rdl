@@ -11,88 +11,6 @@
       <rd:DataSourceID>13b269cd-cd6c-4c87-bd84-764ac529f319</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="No_">
-          <DataField>No_</DataField>
-        </Field>
-        <Field Name="AutoNo_AutoRentHeader">
-          <DataField>AutoNo_AutoRentHeader</DataField>
-        </Field>
-        <Field Name="ClientNo_AutoRentHeader">
-          <DataField>ClientNo_AutoRentHeader</DataField>
-        </Field>
-        <Field Name="Price_AutoRentHeader">
-          <DataField>Price_AutoRentHeader</DataField>
-        </Field>
-        <Field Name="Price_AutoRentHeaderFormat">
-          <DataField>Price_AutoRentHeaderFormat</DataField>
-        </Field>
-        <Field Name="ReservedFrom_AutoRentHeader">
-          <DataField>ReservedFrom_AutoRentHeader</DataField>
-        </Field>
-        <Field Name="ReservedTo_AutoRentHeader">
-          <DataField>ReservedTo_AutoRentHeader</DataField>
-        </Field>
-        <Field Name="TotalRentAndServiceAmount">
-          <DataField>TotalRentAndServiceAmount</DataField>
-        </Field>
-        <Field Name="TotalRentAndServiceAmountFormat">
-          <DataField>TotalRentAndServiceAmountFormat</DataField>
-        </Field>
-        <Field Name="TotalServiceAmount">
-          <DataField>TotalServiceAmount</DataField>
-        </Field>
-        <Field Name="TotalServiceAmountFormat">
-          <DataField>TotalServiceAmountFormat</DataField>
-        </Field>
-        <Field Name="RentAmount">
-          <DataField>RentAmount</DataField>
-        </Field>
-        <Field Name="RentAmountFormat">
-          <DataField>RentAmountFormat</DataField>
-        </Field>
-        <Field Name="Mark_Auto">
-          <DataField>Mark_Auto</DataField>
-        </Field>
-        <Field Name="Model_Auto">
-          <DataField>Model_Auto</DataField>
-        </Field>
-        <Field Name="Type">
-          <DataField>Type</DataField>
-        </Field>
-        <Field Name="Type_No_">
-          <DataField>Type_No_</DataField>
-        </Field>
-        <Field Name="Type_Description">
-          <DataField>Type_Description</DataField>
-        </Field>
-        <Field Name="Unit">
-          <DataField>Unit</DataField>
-        </Field>
-        <Field Name="Quantity">
-          <DataField>Quantity</DataField>
-        </Field>
-        <Field Name="Unit_price">
-          <DataField>Unit_price</DataField>
-        </Field>
-        <Field Name="Unit_priceFormat">
-          <DataField>Unit_priceFormat</DataField>
-        </Field>
-        <Field Name="Final_price">
-          <DataField>Final_price</DataField>
-        </Field>
-        <Field Name="Final_priceFormat">
-          <DataField>Final_priceFormat</DataField>
-        </Field>
-      </Fields>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -1843,4 +1761,86 @@ End Function
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="No_">
+          <DataField>No_</DataField>
+        </Field>
+        <Field Name="AutoNo_AutoRentHeader">
+          <DataField>AutoNo_AutoRentHeader</DataField>
+        </Field>
+        <Field Name="ClientNo_AutoRentHeader">
+          <DataField>ClientNo_AutoRentHeader</DataField>
+        </Field>
+        <Field Name="Price_AutoRentHeader">
+          <DataField>Price_AutoRentHeader</DataField>
+        </Field>
+        <Field Name="Price_AutoRentHeaderFormat">
+          <DataField>Price_AutoRentHeaderFormat</DataField>
+        </Field>
+        <Field Name="ReservedFrom_AutoRentHeader">
+          <DataField>ReservedFrom_AutoRentHeader</DataField>
+        </Field>
+        <Field Name="ReservedTo_AutoRentHeader">
+          <DataField>ReservedTo_AutoRentHeader</DataField>
+        </Field>
+        <Field Name="TotalRentAndServiceAmount">
+          <DataField>TotalRentAndServiceAmount</DataField>
+        </Field>
+        <Field Name="TotalRentAndServiceAmountFormat">
+          <DataField>TotalRentAndServiceAmountFormat</DataField>
+        </Field>
+        <Field Name="TotalServiceAmount">
+          <DataField>TotalServiceAmount</DataField>
+        </Field>
+        <Field Name="TotalServiceAmountFormat">
+          <DataField>TotalServiceAmountFormat</DataField>
+        </Field>
+        <Field Name="RentAmount">
+          <DataField>RentAmount</DataField>
+        </Field>
+        <Field Name="RentAmountFormat">
+          <DataField>RentAmountFormat</DataField>
+        </Field>
+        <Field Name="Mark_Auto">
+          <DataField>Mark_Auto</DataField>
+        </Field>
+        <Field Name="Model_Auto">
+          <DataField>Model_Auto</DataField>
+        </Field>
+        <Field Name="Type">
+          <DataField>Type</DataField>
+        </Field>
+        <Field Name="Type_No_">
+          <DataField>Type_No_</DataField>
+        </Field>
+        <Field Name="Type_Description">
+          <DataField>Type_Description</DataField>
+        </Field>
+        <Field Name="Unit">
+          <DataField>Unit</DataField>
+        </Field>
+        <Field Name="Quantity">
+          <DataField>Quantity</DataField>
+        </Field>
+        <Field Name="Unit_price">
+          <DataField>Unit_price</DataField>
+        </Field>
+        <Field Name="Unit_priceFormat">
+          <DataField>Unit_priceFormat</DataField>
+        </Field>
+        <Field Name="Final_price">
+          <DataField>Final_price</DataField>
+        </Field>
+        <Field Name="Final_priceFormat">
+          <DataField>Final_priceFormat</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>
