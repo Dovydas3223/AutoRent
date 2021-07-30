@@ -11,6 +11,88 @@
       <rd:DataSourceID>13b269cd-cd6c-4c87-bd84-764ac529f319</rd:DataSourceID>
     </DataSource>
   </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+      <Fields>
+        <Field Name="No_">
+          <DataField>No_</DataField>
+        </Field>
+        <Field Name="AutoNo_AutoRentHeader">
+          <DataField>AutoNo_AutoRentHeader</DataField>
+        </Field>
+        <Field Name="ClientNo_AutoRentHeader">
+          <DataField>ClientNo_AutoRentHeader</DataField>
+        </Field>
+        <Field Name="Price_AutoRentHeader">
+          <DataField>Price_AutoRentHeader</DataField>
+        </Field>
+        <Field Name="Price_AutoRentHeaderFormat">
+          <DataField>Price_AutoRentHeaderFormat</DataField>
+        </Field>
+        <Field Name="ReservedFrom_AutoRentHeader">
+          <DataField>ReservedFrom_AutoRentHeader</DataField>
+        </Field>
+        <Field Name="ReservedTo_AutoRentHeader">
+          <DataField>ReservedTo_AutoRentHeader</DataField>
+        </Field>
+        <Field Name="TotalRentAndServiceAmount">
+          <DataField>TotalRentAndServiceAmount</DataField>
+        </Field>
+        <Field Name="TotalRentAndServiceAmountFormat">
+          <DataField>TotalRentAndServiceAmountFormat</DataField>
+        </Field>
+        <Field Name="TotalServiceAmount">
+          <DataField>TotalServiceAmount</DataField>
+        </Field>
+        <Field Name="TotalServiceAmountFormat">
+          <DataField>TotalServiceAmountFormat</DataField>
+        </Field>
+        <Field Name="RentAmount">
+          <DataField>RentAmount</DataField>
+        </Field>
+        <Field Name="RentAmountFormat">
+          <DataField>RentAmountFormat</DataField>
+        </Field>
+        <Field Name="Mark_Auto">
+          <DataField>Mark_Auto</DataField>
+        </Field>
+        <Field Name="Model_Auto">
+          <DataField>Model_Auto</DataField>
+        </Field>
+        <Field Name="Type">
+          <DataField>Type</DataField>
+        </Field>
+        <Field Name="Type_No_">
+          <DataField>Type_No_</DataField>
+        </Field>
+        <Field Name="Type_Description">
+          <DataField>Type_Description</DataField>
+        </Field>
+        <Field Name="Unit">
+          <DataField>Unit</DataField>
+        </Field>
+        <Field Name="Quantity">
+          <DataField>Quantity</DataField>
+        </Field>
+        <Field Name="Unit_price">
+          <DataField>Unit_price</DataField>
+        </Field>
+        <Field Name="Unit_priceFormat">
+          <DataField>Unit_priceFormat</DataField>
+        </Field>
+        <Field Name="Final_price">
+          <DataField>Final_price</DataField>
+        </Field>
+        <Field Name="Final_priceFormat">
+          <DataField>Final_priceFormat</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -630,6 +712,7 @@
                             <Border>
                               <Style>None</Style>
                             </Border>
+                            <BackgroundColor>Gainsboro</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                           </Style>
                         </Textbox>
@@ -659,6 +742,7 @@
                               <Color>LightGrey</Color>
                               <Style>None</Style>
                             </Border>
+                            <BackgroundColor>Gainsboro</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                           </Style>
                         </Textbox>
@@ -688,6 +772,7 @@
                               <Color>LightGrey</Color>
                               <Style>None</Style>
                             </Border>
+                            <BackgroundColor>Gainsboro</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                           </Style>
                         </Textbox>
@@ -717,6 +802,7 @@
                               <Color>LightGrey</Color>
                               <Style>None</Style>
                             </Border>
+                            <BackgroundColor>Gainsboro</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                           </Style>
                         </Textbox>
@@ -746,6 +832,7 @@
                               <Color>LightGrey</Color>
                               <Style>None</Style>
                             </Border>
+                            <BackgroundColor>Gainsboro</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                           </Style>
                         </Textbox>
@@ -775,6 +862,7 @@
                               <Color>LightGrey</Color>
                               <Style>None</Style>
                             </Border>
+                            <BackgroundColor>Gainsboro</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                           </Style>
                         </Textbox>
@@ -804,6 +892,7 @@
                               <Color>LightGrey</Color>
                               <Style>None</Style>
                             </Border>
+                            <BackgroundColor>Gainsboro</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                           </Style>
                         </Textbox>
@@ -935,9 +1024,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox14</rd:DefaultName>
             <Top>10.29503cm</Top>
-            <Left>12.91753cm</Left>
+            <Left>10.77939cm</Left>
             <Height>0.79375cm</Height>
-            <Width>3.52778cm</Width>
+            <Width>4.98299cm</Width>
             <ZIndex>11</ZIndex>
             <Style>
               <Border>
@@ -958,7 +1047,10 @@
                 <TextRuns>
                   <TextRun>
                     <Value>=Parameters!Rent_Amount_Caption.Value</Value>
-                    <Style />
+                    <Style>
+                      <FontFamily>Times New Roman</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
@@ -966,9 +1058,9 @@
             </Paragraphs>
             <rd:DefaultName>Rent_Amount_Caption</rd:DefaultName>
             <Top>9.41281cm</Top>
-            <Left>12.91753cm</Left>
+            <Left>10.77939cm</Left>
             <Height>0.70583cm</Height>
-            <Width>3.52778cm</Width>
+            <Width>4.98299cm</Width>
             <ZIndex>12</ZIndex>
             <Style>
               <Border>
@@ -988,7 +1080,10 @@
                 <TextRuns>
                   <TextRun>
                     <Value>=Parameters!Rent_Service_Amount_Caption.Value</Value>
-                    <Style />
+                    <Style>
+                      <FontFamily>Times New Roman</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
@@ -996,9 +1091,9 @@
             </Paragraphs>
             <rd:DefaultName>Rent_Service_Amount_Caption</rd:DefaultName>
             <Top>11.26517cm</Top>
-            <Left>12.91753cm</Left>
+            <Left>10.77939cm</Left>
             <Height>0.79375cm</Height>
-            <Width>3.52778cm</Width>
+            <Width>4.98299cm</Width>
             <ZIndex>13</ZIndex>
             <Style>
               <Border>
@@ -1018,15 +1113,20 @@
                 <TextRuns>
                   <TextRun>
                     <Value>=First(Fields!RentAmount.Value, "DataSet_Result")</Value>
-                    <Style />
+                    <Style>
+                      <FontFamily>Times New Roman</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>RentAmount</rd:DefaultName>
             <Top>9.41281cm</Top>
-            <Left>16.97649cm</Left>
+            <Left>16.29356cm</Left>
             <Height>0.70583cm</Height>
             <Width>3.52778cm</Width>
             <ZIndex>14</ZIndex>
@@ -1034,6 +1134,7 @@
               <Border>
                 <Style>None</Style>
               </Border>
+              <VerticalAlign>Middle</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -1048,89 +1149,23 @@
                 <TextRuns>
                   <TextRun>
                     <Value>=First(Fields!TotalRentAndServiceAmount.Value, "DataSet_Result")</Value>
-                    <Style />
+                    <Style>
+                      <FontFamily>Times New Roman</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>TotalRentAndServiceAmount</rd:DefaultName>
             <Top>11.26517cm</Top>
-            <Left>16.97649cm</Left>
+            <Left>16.29356cm</Left>
             <Height>0.79375cm</Height>
             <Width>3.52769cm</Width>
             <ZIndex>15</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Mark">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!Mark.Value, "DataSet_Result")</Value>
-                    <Style>
-                      <FontFamily>Times New Roman</FontFamily>
-                      <FontSize>12pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Right</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Mark</rd:DefaultName>
-            <Top>2.40771cm</Top>
-            <Left>14.41493cm</Left>
-            <Height>0.79375cm</Height>
-            <Width>5.40623cm</Width>
-            <ZIndex>16</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <VerticalAlign>Middle</VerticalAlign>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Model">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!Model.Value, "DataSet_Result")</Value>
-                    <Style>
-                      <FontFamily>Times New Roman</FontFamily>
-                      <FontSize>12pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Right</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Model</rd:DefaultName>
-            <Top>3.34257cm</Top>
-            <Left>14.41493cm</Left>
-            <Height>0.79375cm</Height>
-            <Width>5.43269cm</Width>
-            <ZIndex>17</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1149,7 +1184,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Parameters!MarkCaption.Value</Value>
+                    <Value>=Parameters!Mark_AutoCaption.Value</Value>
                     <Style>
                       <FontFamily>Times New Roman</FontFamily>
                       <FontSize>12pt</FontSize>
@@ -1164,7 +1199,7 @@
             <Left>1.22232cm</Left>
             <Height>0.79375cm</Height>
             <Width>3.52778cm</Width>
-            <ZIndex>18</ZIndex>
+            <ZIndex>16</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1182,7 +1217,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Parameters!ModelCaption.Value</Value>
+                    <Value>=Parameters!Model_AutoCaption.Value</Value>
                     <Style>
                       <FontFamily>Times New Roman</FontFamily>
                       <FontSize>12pt</FontSize>
@@ -1197,7 +1232,7 @@
             <Left>1.22232cm</Left>
             <Height>0.79375cm</Height>
             <Width>3.52778cm</Width>
-            <ZIndex>19</ZIndex>
+            <ZIndex>17</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1216,17 +1251,93 @@
                 <TextRuns>
                   <TextRun>
                     <Value>=First(Fields!TotalServiceAmount.Value, "DataSet_Result")</Value>
-                    <Style />
+                    <Style>
+                      <FontFamily>Times New Roman</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>RentAmount</rd:DefaultName>
             <Top>10.29503cm</Top>
-            <Left>16.9764cm</Left>
+            <Left>16.29347cm</Left>
             <Height>0.70583cm</Height>
             <Width>3.52778cm</Width>
+            <ZIndex>18</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox21">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Mark_Auto.Value, "DataSet_Result")</Value>
+                    <Style>
+                      <FontFamily>Times New Roman</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox14</rd:DefaultName>
+            <Top>2.39862cm</Top>
+            <Left>14.41493cm</Left>
+            <Height>0.79375cm</Height>
+            <Width>5.40632cm</Width>
+            <ZIndex>19</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox22">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Model_Auto.Value, "DataSet_Result")</Value>
+                    <Style>
+                      <FontFamily>Times New Roman</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox14</rd:DefaultName>
+            <Top>3.33348cm</Top>
+            <Left>14.41484cm</Left>
+            <Height>0.79375cm</Height>
+            <Width>5.40632cm</Width>
             <ZIndex>20</ZIndex>
             <Style>
               <Border>
@@ -1246,13 +1357,48 @@
           </Border>
         </Style>
       </Body>
-      <Width>21cm</Width>
+      <Width>20.36333cm</Width>
       <Page>
         <PageHeader>
-          <Height>2.55474cm</Height>
+          <Height>3.24266cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
+            <Textbox Name="ReportName2">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Parameters!ReportOfAutoRentCardLbl.Value</Value>
+                      <Style>
+                        <FontFamily>Times New Roman</FontFamily>
+                        <FontSize>28pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>ReportName</rd:DefaultName>
+              <Top>0.72601cm</Top>
+              <Left>1.2222cm</Left>
+              <Height>1.79064cm</Height>
+              <Width>9.485cm</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <VerticalAlign>Top</VerticalAlign>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
             <Textbox Name="UserID">
               <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
@@ -1266,18 +1412,22 @@
                       </Style>
                     </TextRun>
                   </TextRuns>
-                  <Style />
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>UserID</rd:DefaultName>
-              <Top>0.34078cm</Top>
-              <Left>13.53097cm</Left>
+              <Top>1.43184cm</Top>
+              <Left>17.33318cm</Left>
               <Height>0.6cm</Height>
               <Width>2.5cm</Width>
+              <ZIndex>1</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
                 </Border>
+                <VerticalAlign>Middle</VerticalAlign>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>
@@ -1297,19 +1447,22 @@
                       </Style>
                     </TextRun>
                   </TextRuns>
-                  <Style />
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>ExecutionTime</rd:DefaultName>
-              <Top>0.34078cm</Top>
-              <Left>17.32116cm</Left>
+              <Top>0.72601cm</Top>
+              <Left>14.13173cm</Left>
               <Height>0.6cm</Height>
-              <Width>2.5cm</Width>
-              <ZIndex>1</ZIndex>
+              <Width>5.70146cm</Width>
+              <ZIndex>2</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
                 </Border>
+                <VerticalAlign>Middle</VerticalAlign>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>
@@ -1324,57 +1477,33 @@
                   <TextRuns>
                     <TextRun>
                       <Value>=Globals!PageNumber</Value>
-                      <Style>
-                        <FontFamily>Times New Roman</FontFamily>
-                      </Style>
+                      <Style />
+                    </TextRun>
+                    <TextRun>
+                      <Value> / </Value>
+                      <Style />
+                    </TextRun>
+                    <TextRun>
+                      <Value>=Globals!TotalPages</Value>
+                      <Style />
                     </TextRun>
                   </TextRuns>
-                  <Style />
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>PageNumber</rd:DefaultName>
-              <Top>1.55787cm</Top>
-              <Left>17.32116cm</Left>
+              <Top>2.17295cm</Top>
+              <Left>14.71381cm</Left>
               <Height>0.6cm</Height>
-              <Width>2.5cm</Width>
-              <ZIndex>2</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="ReportName">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Parameters!ReportOfAutoRentCardLbl.Value</Value>
-                      <Style>
-                        <FontFamily>Times New Roman</FontFamily>
-                        <FontSize>20pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>ReportName</rd:DefaultName>
-              <Top>0.34078cm</Top>
-              <Left>1.2222cm</Left>
-              <Height>1.52605cm</Height>
-              <Width>9.485cm</Width>
+              <Width>5.11937cm</Width>
               <ZIndex>3</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
                 </Border>
+                <VerticalAlign>Middle</VerticalAlign>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>
@@ -1490,6 +1619,24 @@
       </DefaultValue>
       <Prompt>ReservedTo_AutoRentHeaderCaption</Prompt>
     </ReportParameter>
+    <ReportParameter Name="Mark_AutoCaption">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>Mark_AutoCaption</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Mark_AutoCaption</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Model_AutoCaption">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>Model_AutoCaption</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Model_AutoCaption</Prompt>
+    </ReportParameter>
     <ReportParameter Name="TypeCaption">
       <DataType>String</DataType>
       <DefaultValue>
@@ -1553,24 +1700,6 @@
       </DefaultValue>
       <Prompt>Final_priceCaption</Prompt>
     </ReportParameter>
-    <ReportParameter Name="MarkCaption">
-      <DataType>String</DataType>
-      <DefaultValue>
-        <Values>
-          <Value>MarkCaption</Value>
-        </Values>
-      </DefaultValue>
-      <Prompt>MarkCaption</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="ModelCaption">
-      <DataType>String</DataType>
-      <DefaultValue>
-        <Values>
-          <Value>ModelCaption</Value>
-        </Values>
-      </DefaultValue>
-      <Prompt>ModelCaption</Prompt>
-    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -1630,47 +1759,47 @@
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>10</RowIndex>
-          <ParameterName>TypeCaption</ParameterName>
+          <ParameterName>Mark_AutoCaption</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>11</RowIndex>
-          <ParameterName>Type_No_Caption</ParameterName>
+          <ParameterName>Model_AutoCaption</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>12</RowIndex>
-          <ParameterName>Type_DescriptionCaption</ParameterName>
+          <ParameterName>TypeCaption</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>13</RowIndex>
-          <ParameterName>UnitCaption</ParameterName>
+          <ParameterName>Type_No_Caption</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>14</RowIndex>
-          <ParameterName>QuantityCaption</ParameterName>
+          <ParameterName>Type_DescriptionCaption</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>15</RowIndex>
-          <ParameterName>Unit_priceCaption</ParameterName>
+          <ParameterName>UnitCaption</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>16</RowIndex>
-          <ParameterName>Final_priceCaption</ParameterName>
+          <ParameterName>QuantityCaption</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>17</RowIndex>
-          <ParameterName>MarkCaption</ParameterName>
+          <ParameterName>Unit_priceCaption</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>18</RowIndex>
-          <ParameterName>ModelCaption</ParameterName>
+          <ParameterName>Final_priceCaption</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
@@ -1714,86 +1843,4 @@ End Function
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Fields>
-        <Field Name="No_">
-          <DataField>No_</DataField>
-        </Field>
-        <Field Name="AutoNo_AutoRentHeader">
-          <DataField>AutoNo_AutoRentHeader</DataField>
-        </Field>
-        <Field Name="ClientNo_AutoRentHeader">
-          <DataField>ClientNo_AutoRentHeader</DataField>
-        </Field>
-        <Field Name="Price_AutoRentHeader">
-          <DataField>Price_AutoRentHeader</DataField>
-        </Field>
-        <Field Name="Price_AutoRentHeaderFormat">
-          <DataField>Price_AutoRentHeaderFormat</DataField>
-        </Field>
-        <Field Name="ReservedFrom_AutoRentHeader">
-          <DataField>ReservedFrom_AutoRentHeader</DataField>
-        </Field>
-        <Field Name="ReservedTo_AutoRentHeader">
-          <DataField>ReservedTo_AutoRentHeader</DataField>
-        </Field>
-        <Field Name="RentAmount">
-          <DataField>RentAmount</DataField>
-        </Field>
-        <Field Name="RentAmountFormat">
-          <DataField>RentAmountFormat</DataField>
-        </Field>
-        <Field Name="TotalServiceAmount">
-          <DataField>TotalServiceAmount</DataField>
-        </Field>
-        <Field Name="TotalServiceAmountFormat">
-          <DataField>TotalServiceAmountFormat</DataField>
-        </Field>
-        <Field Name="TotalRentAndServiceAmount">
-          <DataField>TotalRentAndServiceAmount</DataField>
-        </Field>
-        <Field Name="TotalRentAndServiceAmountFormat">
-          <DataField>TotalRentAndServiceAmountFormat</DataField>
-        </Field>
-        <Field Name="Type">
-          <DataField>Type</DataField>
-        </Field>
-        <Field Name="Type_No_">
-          <DataField>Type_No_</DataField>
-        </Field>
-        <Field Name="Type_Description">
-          <DataField>Type_Description</DataField>
-        </Field>
-        <Field Name="Unit">
-          <DataField>Unit</DataField>
-        </Field>
-        <Field Name="Quantity">
-          <DataField>Quantity</DataField>
-        </Field>
-        <Field Name="Unit_price">
-          <DataField>Unit_price</DataField>
-        </Field>
-        <Field Name="Unit_priceFormat">
-          <DataField>Unit_priceFormat</DataField>
-        </Field>
-        <Field Name="Final_price">
-          <DataField>Final_price</DataField>
-        </Field>
-        <Field Name="Final_priceFormat">
-          <DataField>Final_priceFormat</DataField>
-        </Field>
-        <Field Name="Mark">
-          <DataField>Mark</DataField>
-        </Field>
-        <Field Name="Model">
-          <DataField>Model</DataField>
-        </Field>
-      </Fields>
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-    </DataSet>
-  </DataSets>
 </Report>
