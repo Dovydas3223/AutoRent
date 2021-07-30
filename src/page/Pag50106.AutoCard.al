@@ -4,6 +4,7 @@ page 50106 "Auto Card"
     PageType = Card;
     UsageCategory = None;
     SourceTable = Auto;
+    PromotedActionCategories = 'New,Process,Report,Manage';
 
     layout
     {
@@ -82,18 +83,27 @@ page 50106 "Auto Card"
         {
             action("Reserve Auto")
             {
-                RunObject = page "Auto Reservation List";
-                RunPageLink = "Auto No." = field("No.");
+                Caption = 'Reserve Auto';
+                ApplicationArea = All;
                 Image = LinesFromJob;
                 Promoted = true;
+                PromotedCategory = Category4;
+
+                RunObject = page "Auto Reservation List";
+                RunPageLink = "Auto No." = field("No.");
+
             }
 
             action("Valid Reservations")
             {
-                RunObject = page "Valid reservation";
-                RunPageLink = "Auto No." = field("No.");
+                Caption = 'Valid Reservations';
+                ApplicationArea = All;
                 Image = CompleteLine;
                 Promoted = true;
+                PromotedCategory = Category4;
+
+                RunObject = page "Valid reservation";
+                RunPageLink = "Auto No." = field("No.");
             }
 
             action("Auto Damage List")
@@ -101,6 +111,8 @@ page 50106 "Auto Card"
                 Caption = 'Auto Damage List';
                 ApplicationArea = All;
                 Image = List;
+                Promoted = true;
+                PromotedCategory = Category4;
 
                 trigger OnAction()
                 var
@@ -116,6 +128,8 @@ page 50106 "Auto Card"
                 Caption = 'Print History';
                 ApplicationArea = All;
                 Image = Print;
+                Promoted = true;
+                PromotedCategory = Report;
 
                 trigger OnAction()
                 begin
