@@ -89,10 +89,6 @@ table 50106 "Auto Rent Header"
             Editable = false;
             FieldClass = FlowField;
             CalcFormula = sum("Auto Rent Line"."Final price" where("No." = field("No.")));
-            trigger OnValidate()
-            begin
-                CalculatePrice();
-            end;
         }
         field(60; Status; Enum "Auto Rent Status")
         {
@@ -118,21 +114,22 @@ table 50106 "Auto Rent Header"
             "Date" := WorkDate();
     end;
 
+    //Calculating line "Quantity" by subtracting "Reserved From" from "Reserved To".
     procedure CalculateQuantity()
     var
         Line: Record "Auto Rent Line";
-        Dur: Duration;
     begin
         Line.SetRange("No.", Rec."No.");
         if Line.FindFirst() then begin
-            Dur := (Rec."Reserved To" - Rec."Reserved From");
-            Line.Quantity := ROUND((Dur / 86400000), 1, '>');
+            Line.Quantity := ROUND(((Rec."Reserved To" - Rec."Reserved From") / 86400000), 1, '>');
             Line.CalculateFinalPrice();
             Line.Modify(true);
-            Rec.CalculatePrice();
+
         end;
     end;
 
+    //Open reservation list modal if specific car and client has a 
+    //reservation.
     procedure OpenReservationlist()
     var
         AutoReservation: record "Auto Reservation";
@@ -142,27 +139,13 @@ table 50106 "Auto Rent Header"
         AutoReservation.SetRange("Client No.", Rec."Client No.");
         AutoReservation.Ascending(true);
 
-        if not AutoReservation.IsEmpty() then begin
+        if not AutoReservation.IsEmpty() then
             if Page.RunModal(Page::"Auto Reservation List", AutoReservation) = Action::LookupOK then begin
                 "Reserved From" := AutoReservation."Reservation Start";
                 "Reserved To" := AutoReservation."Reservation End";
-            end;
-        end else begin
-            Message(NoReservationLbl, "Auto No.", "Client No.");
-        end;
-    end;
-
-    procedure CalculatePrice()
-    var
-        AutoRentLine: Record "Auto Rent Line";
-        "Sum": Decimal;
-    begin
-        AutoRentLine.SetRange("No.", Rec."No.");
-        if AutoRentLine.FindSet() then
-            repeat begin
-                "Sum" += AutoRentLine."Final price";
-            end until AutoRentLine.Next() = 0;
-        Rec.Price := "Sum";
+            end
+            else
+                Message(NoReservationLbl, "Auto No.", "Client No.");
     end;
 
     procedure GetAutoNoFromNoSeries(): Code[20]
@@ -178,18 +161,20 @@ table 50106 "Auto Rent Header"
     procedure IsClientInDebt(): Boolean
     var
         CustLedgerEntry: Record "Cust. Ledger Entry";
-        "sum": Decimal;
+        Amount: Decimal;
     begin
         CustLedgerEntry.SetRange("Customer No.", Rec."Client No.");
         if CustLedgerEntry.FindSet() then begin
-            repeat begin
-                "sum" += CustLedgerEntry."Amount (LCY)";
-            end until CustLedgerEntry.Next() = 0;
-            if sum < 0 then
+            repeat
+                Amount += CustLedgerEntry."Amount (LCY)";
+            until CustLedgerEntry.Next() = 0;
+
+            if Amount < 0 then
                 exit(true);
         end;
         exit(false);
     end;
+
 
     procedure IsClientBlocked(): Boolean
     var
@@ -199,6 +184,8 @@ table 50106 "Auto Rent Header"
             exit(Customer.IsBlocked());
     end;
 
+    //Checking if entered "Reservation Start" and "Reservation End"
+    //exists for specific auto and client.
     procedure IsReservationDateValid()
     var
         AutoReserv: Record "Auto Reservation";
@@ -211,13 +198,4 @@ table 50106 "Auto Rent Header"
         if not AutoReserv.FindFirst() then
             Error(NoValidReservErr, Rec."Auto No.", Rec."Client No.");
     end;
-
-    procedure TestStatusOpen(): Boolean
-    begin
-        if Status <> Status::Open then
-            exit(false);
-        exit(true);
-    end;
-
-
 }
