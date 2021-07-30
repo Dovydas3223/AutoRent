@@ -4,7 +4,7 @@ page 50111 "Auto Rent Header Card"
     PageType = Document;
     UsageCategory = None;
     SourceTable = "Auto Rent Header";
-    PromotedActionCategories = 'New,Process,Report,Manage,Contract Status,Return Car';
+    PromotedActionCategories = 'New,Process,Report,Manage,Contract Status';
 
 
     layout
@@ -62,12 +62,26 @@ page 50111 "Auto Rent Header Card"
                     begin
                         Rec.OpenReservationlist();
                         Rec.CalculateQuantity();
+
+                        CurrPage.Update(true);
+                    end;
+
+                    trigger OnValidate()
+                    begin
+                        if Rec."Reserved From" <> xRec."Reserved From" then
+                            CurrPage.Update(true);
                     end;
                 }
                 field("Reserved To"; Rec."Reserved To")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Valid reservation end.';
+
+                    trigger OnValidate()
+                    begin
+                        if Rec."Reserved To" <> xRec."Reserved To" then
+                            CurrPage.Update(true);
+                    end;
                 }
                 field("Price"; Rec."Price")
                 {
@@ -116,10 +130,10 @@ page 50111 "Auto Rent Header Card"
             {
                 Caption = 'Issue Contract';
                 ApplicationArea = All;
-                Enabled = rec."Status" <> rec."Status"::Issued;
                 Image = ReleaseDoc;
                 Promoted = true;
                 PromotedCategory = Category5;
+                Enabled = rec."Status" <> rec."Status"::Issued;
 
                 trigger OnAction()
                 var
@@ -135,10 +149,10 @@ page 50111 "Auto Rent Header Card"
             {
                 Caption = 'Open Contract';
                 ApplicationArea = All;
-                Enabled = rec."Status" <> rec."Status"::Open;
                 Image = ReOpen;
                 Promoted = true;
                 PromotedCategory = Category5;
+                Enabled = rec."Status" <> rec."Status"::Open;
 
                 trigger OnAction()
                 var
@@ -161,7 +175,6 @@ page 50111 "Auto Rent Header Card"
                 var
                     CarReturnMgmt: Codeunit "Car Return Management";
                     ItemTransferMngmt: Codeunit ItemTransferManagement;
-
                     AutoDamageConfirmLbl: Label 'Is auto rent damage filled in?';
                 begin
                     if Confirm(AutoDamageConfirmLbl) then begin
@@ -195,7 +208,7 @@ page 50111 "Auto Rent Header Card"
                 ApplicationArea = All;
                 Image = Print;
                 Promoted = true;
-                PromotedCategory = Category4;
+                PromotedCategory = Report;
 
                 trigger OnAction()
                 begin
@@ -203,8 +216,6 @@ page 50111 "Auto Rent Header Card"
                     Report.RunModal(50100, true, true, Rec);
                 end;
             }
-
-
         }
     }
 
