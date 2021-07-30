@@ -38,9 +38,6 @@ codeunit 50102 "Car Return Management"
             FinishedLines.TransferFields(AutoRentLine);
             FinishedLines.Insert();
         end until AutoRentLine.Next() = 0;
-
-
-
     end;
 
     procedure TransferAutoDamage(var AutoContract: Record "Auto Rent Header")
